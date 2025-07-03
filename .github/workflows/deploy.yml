@@ -23,11 +23,11 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Copy CNAME into dist
-        run: cp CNAME dist/
-
       - name: Build the project
         run: npm run build
+
+      - name: Copy CNAME into dist
+        run: cp CNAME dist/
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
