@@ -242,13 +242,19 @@
                 </div>
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-lg-8 col-xl-6">
-                        <form action="https://formsubmit.co/admin@sparkcoding.com.au" method="POST">
+                        <!-- Success Message-->
+                        <div class="alert alert-success text-center" id="successMessage" style="display: none">
+                            <i class="bi bi-check-circle fs-1 text-success mb-3"></i>
+                            <h4 class="alert-heading">Well done!</h4>
+                            <p class="mb-0">Thank you for your interest! We've received your free trial request and will contact you shortly at the email address you provided.</p>
+                        </div>
+                        <form id="trialForm" action="https://formsubmit.co/admin@sparkcoding.com.au" method="POST">
                             <!-- Honeypot for spam protection-->
                             <input type="text" name="_honeypot" style="display: none" />
                             <!-- Disable captcha-->
                             <input type="hidden" name="_captcha" value="false" />
-                            <!-- Success page redirect-->
-                            <input type="hidden" name="_next" value="https://sparkcoding.com.au/#trial-form" />
+                            <!-- Redirect back to form with success parameter-->
+                            <input type="hidden" name="_next" value="https://sparkcoding.com.au/?success=true#trial-form" />
                             <input type="hidden" name="_subject" value="New Free Trial Enquiry - Spark Coding" />
                             <!-- Parent/Guardian Name-->
                             <div class="form-floating mb-3">
@@ -264,7 +270,6 @@
                             <div class="form-floating mb-3">
                                 <select class="form-control" id="yearLevel" name="School Year Level" required>
                                     <option value="" selected disabled>Select year level...</option>
-                                    <option value="K-2">Kindergarten to Year 2</option>
                                     <option value="3-4">Year 3-4</option>
                                     <option value="5-6">Year 5-6</option>
                                     <option value="7-8">Year 7-8</option>
