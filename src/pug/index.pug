@@ -59,7 +59,6 @@ html(lang='en')
                 "alternateName": "Spark Coding Sydney",
                 "description": "Premier coding tuition for kids aged 8+ in Rouse Hill & Sydney. Expert-led programming classes in Scratch, Python, Arduino & robotics.",
                 "url": "https://sparkcoding.com.au",
-                "telephone": "+61455666640",
                 "email": "admin@sparkcoding.com.au",
                 "address": {
                     "@type": "PostalAddress",
@@ -176,6 +175,8 @@ html(lang='en')
                             a.nav-link(href='#about') About
                         li.nav-item
                             a.nav-link(href='#services') Services
+                        li.nav-item
+                            a.nav-link(href='#trial-form') Free Trial
                         //- li.nav-item
                         //-     a.nav-link(href='#portfolio') Portfolio
                         li.nav-item
@@ -191,7 +192,7 @@ html(lang='en')
                     .col-lg-8.align-self-baseline
                         p.text-white-75.mb-5
                             | Give your child 21st-century skills with our expert coding tuition in Rouse Hill and surrounding Sydney areas. We teach Scratch, Python, Arduino, robotics and AI to kids aged 8+, with small classes and personalised learning from experienced tech professionals.
-                        a.btn.btn-primary.btn-xl(href='#about') Book Free Trial
+                        a.btn.btn-primary.btn-xl(href='#trial-form') Book Free Trial
 
         // About
         section#about.page-section.bg-primary
@@ -235,19 +236,85 @@ html(lang='en')
                             h3.h4.mb-2 Safe Learning Environment
                             p.text-muted.mb-0 Full compliance with NSW child safety standards ensures parents can trust us with their children's coding education and development.
 
+        // Free Trial Form
+        section#trial-form.page-section.bg-light
+            .container.px-4.px-lg-5
+                .row.gx-4.gx-lg-5.justify-content-center
+                    .col-lg-8.text-center
+                        h2.mt-0 Join Our Free Trial Session
+                        hr.divider
+                        p.text-muted.mb-5 Experience our expert coding tuition firsthand! Fill out the form below and we'll contact you to arrange a FREE trial session for your child. No commitment required.
+                .row.gx-4.gx-lg-5.justify-content-center
+                    .col-lg-8.col-xl-6
+                        form(action='https://formsubmit.co/admin@sparkcoding.com.au', method='POST')
+                            // Honeypot for spam protection
+                            input(type='text', name='_honeypot', style='display:none')
+                            // Disable captcha
+                            input(type='hidden', name='_captcha', value='false')
+                            // Success page redirect
+                            input(type='hidden', name='_next', value='https://sparkcoding.com.au/#trial-form')
+                            input(type='hidden', name='_subject', value='New Free Trial Enquiry - Spark Coding')
+                            
+                            // Parent/Guardian Name
+                            .form-floating.mb-3
+                                input#parentName.form-control(type='text', name='Parent/Guardian Name', placeholder='Enter parent/guardian name...', required)
+                                label(for='parentName') Parent/Guardian Name *
+                            
+                            // Email Address
+                            .form-floating.mb-3
+                                input#email.form-control(type='email', name='Email', placeholder='name@example.com', required)
+                                label(for='email') Email Address *
+                            
+                            // Child's School Year Level
+                            .form-floating.mb-3
+                                select#yearLevel.form-control(name='School Year Level', required)
+                                    option(value='', selected, disabled) Select year level...
+                                    option(value='K-2') Kindergarten to Year 2
+                                    option(value='3-4') Year 3-4
+                                    option(value='5-6') Year 5-6
+                                    option(value='7-8') Year 7-8
+                                    option(value='9-10') Year 9-10
+                                    option(value='11-12') Year 11-12
+                                label(for='yearLevel') Child's School Year Level *
+                            
+                            // Coding Experience Level
+                            .form-floating.mb-3
+                                select#codingLevel.form-control(name='Coding Experience', required)
+                                    option(value='', selected, disabled) Select experience level...
+                                    option(value='Never coded') Never coded
+                                    option(value='Scratch experience') Scratch experience
+                                    option(value='Text-based coding') Text-based coding (Python, JavaScript, etc.)
+                                    option(value='Advanced programmer') Advanced programmer
+                                label(for='codingLevel') Current Coding Experience *
+                            
+                            // Learning Goal
+                            .form-floating.mb-3
+                                select#goal.form-control(name='Learning Goal', required)
+                                    option(value='', selected, disabled) Select primary goal...
+                                    option(value='School enrichment') School enrichment
+                                    option(value='Learn game development') Learn game development
+                                    option(value='Build apps & websites') Build apps & websites
+                                    option(value='Robotics & hardware') Robotics & hardware
+                                    option(value='Career preparation') Career preparation
+                                label(for='goal') Primary Learning Goal *
+                            
+                            // Additional Message
+                            .form-floating.mb-3
+                                textarea#message.form-control(name='Additional Message', placeholder='Enter any additional information...', style='height: 8rem')
+                                label(for='message') Additional Message (Optional)
+                            
+                            // Submit Button
+                            .d-grid
+                                button.btn.btn-primary.btn-xl(type='submit') Request Free Trial
+
         // Call to action
         section#contact.page-section.bg-dark.text-white
             .container.px-4.px-lg-5.text-center
                 h2.mb-4 Ready to Start Your Child's Coding Journey in Rouse Hill?
                 p.mb-4.fs-5 Book a FREE trial session today and see why Rouse Hill and Sydney families choose Spark Coding for their children's programming education. Serving Rouse Hill, Castle Hill, Kellyville, and surrounding northwest Sydney areas. No commitment required!
                 .row.gx-4.gx-lg-5.justify-content-center
-                    .col-lg-4.text-center.mb-5.mb-lg-0
-                        p.d-flex.align-items-center.justify-content-center
-                            i.bi.bi-phone.fs-2.me-2
-                            a.fs-4.text-white.text-decoration-none(href="tel:+61455666640") +61 455 6666 40
-                        p.d-flex.align-items-center.justify-content-center
-                            i.bi.bi-envelope.fs-2.me-2
-                            a.fs-4.text-white.text-decoration-none(href="mailto:admin@sparkcoding.com.au") admin@sparkcoding.com.au
+                    .col-lg-8.text-center.mb-5.mb-lg-0
+                        a.btn.btn-light.btn-xl(href='#trial-form') Join Free Trial Now
 
         // Footer
         footer.bg-light.py-5
@@ -256,6 +323,9 @@ html(lang='en')
                     | Copyright &copy; 2025 - Spark Coding
                     br
                     | ABN: 828 472 009 02
+                    br
+                    | Email: 
+                    a.text-muted(href="mailto:admin@sparkcoding.com.au") admin@sparkcoding.com.au
 
         // Bootstrap core JS
         script(src='https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js')
