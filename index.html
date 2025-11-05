@@ -48,7 +48,6 @@
                 "alternateName": "Spark Coding Sydney",
                 "description": "Premier coding tuition for kids aged 8+ in Rouse Hill & Sydney. Expert-led programming classes in Scratch, Python, Arduino & robotics.",
                 "url": "https://sparkcoding.com.au",
-                "telephone": "+61455666640",
                 "email": "admin@sparkcoding.com.au",
                 "address": {
                     "@type": "PostalAddress",
@@ -160,6 +159,7 @@
                     <ul class="navbar-nav ms-auto my-2 my-lg-0">
                         <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
                         <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#trial-form">Free Trial</a></li>
                         <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
                     </ul>
                 </div>
@@ -175,7 +175,7 @@
                     </div>
                     <div class="col-lg-8 align-self-baseline">
                         <p class="text-white-75 mb-5">Give your child 21st-century skills with our expert coding tuition in Rouse Hill and surrounding Sydney areas. We teach Scratch, Python, Arduino, robotics and AI to kids aged 8+, with small classes and personalised learning from experienced tech professionals.</p>
-                        <a class="btn btn-primary btn-xl" href="#about">Book Free Trial</a>
+                        <a class="btn btn-primary btn-xl" href="#trial-form">Book Free Trial</a>
                     </div>
                 </div>
             </div>
@@ -230,22 +230,91 @@
                 </div>
             </div>
         </section>
+        <!-- Free Trial Form-->
+        <section class="page-section bg-light" id="trial-form">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-lg-8 text-center">
+                        <h2 class="mt-0">Join Our Free Trial Session</h2>
+                        <hr class="divider" />
+                        <p class="text-muted mb-5">Experience our expert coding tuition firsthand! Fill out the form below and we'll contact you to arrange a FREE trial session for your child. No commitment required.</p>
+                    </div>
+                </div>
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-lg-8 col-xl-6">
+                        <form action="https://formsubmit.co/admin@sparkcoding.com.au" method="POST">
+                            <!-- Honeypot for spam protection-->
+                            <input type="text" name="_honeypot" style="display: none" />
+                            <!-- Disable captcha-->
+                            <input type="hidden" name="_captcha" value="false" />
+                            <!-- Success page redirect-->
+                            <input type="hidden" name="_next" value="https://sparkcoding.com.au/#trial-form" />
+                            <input type="hidden" name="_subject" value="New Free Trial Enquiry - Spark Coding" />
+                            <!-- Parent/Guardian Name-->
+                            <div class="form-floating mb-3">
+                                <input class="form-control" id="parentName" type="text" name="Parent/Guardian Name" placeholder="Enter parent/guardian name..." required />
+                                <label for="parentName">Parent/Guardian Name *</label>
+                            </div>
+                            <!-- Email Address-->
+                            <div class="form-floating mb-3">
+                                <input class="form-control" id="email" type="email" name="Email" placeholder="name@example.com" required />
+                                <label for="email">Email Address *</label>
+                            </div>
+                            <!-- Child's School Year Level-->
+                            <div class="form-floating mb-3">
+                                <select class="form-control" id="yearLevel" name="School Year Level" required>
+                                    <option value="" selected disabled>Select year level...</option>
+                                    <option value="K-2">Kindergarten to Year 2</option>
+                                    <option value="3-4">Year 3-4</option>
+                                    <option value="5-6">Year 5-6</option>
+                                    <option value="7-8">Year 7-8</option>
+                                    <option value="9-10">Year 9-10</option>
+                                    <option value="11-12">Year 11-12</option>
+                                </select>
+                                <label for="yearLevel">Child's School Year Level *</label>
+                            </div>
+                            <!-- Coding Experience Level-->
+                            <div class="form-floating mb-3">
+                                <select class="form-control" id="codingLevel" name="Coding Experience" required>
+                                    <option value="" selected disabled>Select experience level...</option>
+                                    <option value="Never coded">Never coded</option>
+                                    <option value="Scratch experience">Scratch experience</option>
+                                    <option value="Text-based coding">Text-based coding (Python, JavaScript, etc.)</option>
+                                    <option value="Advanced programmer">Advanced programmer</option>
+                                </select>
+                                <label for="codingLevel">Current Coding Experience *</label>
+                            </div>
+                            <!-- Learning Goal-->
+                            <div class="form-floating mb-3">
+                                <select class="form-control" id="goal" name="Learning Goal" required>
+                                    <option value="" selected disabled>Select primary goal...</option>
+                                    <option value="School enrichment">School enrichment</option>
+                                    <option value="Learn game development">Learn game development</option>
+                                    <option value="Build apps &amp; websites">Build apps & websites</option>
+                                    <option value="Robotics &amp; hardware">Robotics & hardware</option>
+                                    <option value="Career preparation">Career preparation</option>
+                                </select>
+                                <label for="goal">Primary Learning Goal *</label>
+                            </div>
+                            <!-- Additional Message-->
+                            <div class="form-floating mb-3">
+                                <textarea class="form-control" id="message" name="Additional Message" placeholder="Enter any additional information..." style="height: 8rem"></textarea>
+                                <label for="message">Additional Message (Optional)</label>
+                            </div>
+                            <!-- Submit Button-->
+                            <div class="d-grid"><button class="btn btn-primary btn-xl" type="submit">Request Free Trial</button></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
         <!-- Call to action-->
         <section class="page-section bg-dark text-white" id="contact">
             <div class="container px-4 px-lg-5 text-center">
                 <h2 class="mb-4">Ready to Start Your Child's Coding Journey in Rouse Hill?</h2>
                 <p class="mb-4 fs-5">Book a FREE trial session today and see why Rouse Hill and Sydney families choose Spark Coding for their children's programming education. Serving Rouse Hill, Castle Hill, Kellyville, and surrounding northwest Sydney areas. No commitment required!</p>
                 <div class="row gx-4 gx-lg-5 justify-content-center">
-                    <div class="col-lg-4 text-center mb-5 mb-lg-0">
-                        <p class="d-flex align-items-center justify-content-center">
-                            <i class="bi bi-phone fs-2 me-2"></i>
-                            <a class="fs-4 text-white text-decoration-none" href="tel:+61455666640">+61 455 6666 40</a>
-                        </p>
-                        <p class="d-flex align-items-center justify-content-center">
-                            <i class="bi bi-envelope fs-2 me-2"></i>
-                            <a class="fs-4 text-white text-decoration-none" href="mailto:admin@sparkcoding.com.au">admin@sparkcoding.com.au</a>
-                        </p>
-                    </div>
+                    <div class="col-lg-8 text-center mb-5 mb-lg-0"><a class="btn btn-light btn-xl" href="#trial-form">Join Free Trial Now</a></div>
                 </div>
             </div>
         </section>
@@ -256,6 +325,9 @@
                     Copyright &copy; 2025 - Spark Coding
                     <br />
                     ABN: 828 472 009 02
+                    <br />
+                    Email:
+                    <a class="text-muted" href="mailto:admin@sparkcoding.com.au">admin@sparkcoding.com.au</a>
                 </div>
             </div>
         </footer>
