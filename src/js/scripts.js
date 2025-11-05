@@ -51,4 +51,26 @@ window.addEventListener('DOMContentLoaded', event => {
         elements: '#portfolio a.portfolio-box'
     });
 
+    // Handle trial form submission success
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('success') === 'true') {
+        const successMessage = document.getElementById('successMessage');
+        const trialForm = document.getElementById('trialForm');
+        
+        if (successMessage && trialForm) {
+            // Show success message and hide form
+            successMessage.style.display = 'block';
+            trialForm.style.display = 'none';
+            
+            // Clean up URL (remove ?success=true parameter)
+            const cleanUrl = window.location.origin + window.location.pathname + window.location.hash;
+            window.history.replaceState({}, document.title, cleanUrl);
+            
+            // Scroll to the success message smoothly
+            setTimeout(() => {
+                successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 100);
+        }
+    }
+
 });

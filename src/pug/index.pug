@@ -246,13 +246,19 @@ html(lang='en')
                         p.text-muted.mb-5 Experience our expert coding tuition firsthand! Fill out the form below and we'll contact you to arrange a FREE trial session for your child. No commitment required.
                 .row.gx-4.gx-lg-5.justify-content-center
                     .col-lg-8.col-xl-6
-                        form(action='https://formsubmit.co/admin@sparkcoding.com.au', method='POST')
+                        // Success Message
+                        #successMessage.alert.alert-success.text-center(style='display:none;')
+                            i.bi.bi-check-circle.fs-1.text-success.mb-3
+                            h4.alert-heading Well done!
+                            p.mb-0 Thank you for your interest! We've received your free trial request and will contact you shortly at the email address you provided.
+                        
+                        form#trialForm(action='https://formsubmit.co/admin@sparkcoding.com.au', method='POST')
                             // Honeypot for spam protection
                             input(type='text', name='_honeypot', style='display:none')
                             // Disable captcha
                             input(type='hidden', name='_captcha', value='false')
-                            // Success page redirect
-                            input(type='hidden', name='_next', value='https://sparkcoding.com.au/#trial-form')
+                            // Redirect back to form with success parameter
+                            input(type='hidden', name='_next', value='https://sparkcoding.com.au/?success=true#trial-form')
                             input(type='hidden', name='_subject', value='New Free Trial Enquiry - Spark Coding')
                             
                             // Parent/Guardian Name
@@ -269,7 +275,6 @@ html(lang='en')
                             .form-floating.mb-3
                                 select#yearLevel.form-control(name='School Year Level', required)
                                     option(value='', selected, disabled) Select year level...
-                                    option(value='K-2') Kindergarten to Year 2
                                     option(value='3-4') Year 3-4
                                     option(value='5-6') Year 5-6
                                     option(value='7-8') Year 7-8
