@@ -38,7 +38,8 @@
         "url": "https://github.com/StartBootstrap/startbootstrap-creative.git"
     },
     "dependencies": {
-        "bootstrap": "5.2.3"
+        "bootstrap": "5.2.3",
+        "puppeteer": "^24.37.3"
     },
     "devDependencies": {
         "autoprefixer": "10.4.14",

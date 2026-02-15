@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spark Coding – Business Card</title>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@400;600;700;800&family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --orange: #f4623a;
+            --indigo: #2a2966;
+            --indigo-mid: #4e4d98;
+            --gold: #fec24d;
+            --gold-light: #fee466;
+            --blue-pale: #f0f9ff;
+            --dark: #1e1e3a;
+            --gray: #6c757d;
+            --white: #ffffff;
+
+            /* Standard business card: 90mm x 55mm */
+            --card-w: 90mm;
+            --card-h: 55mm;
+        }
+
+        body {
+            font-family: 'Merriweather', Georgia, serif;
+            font-size: 7pt;
+            line-height: 1.3;
+            color: #333;
+            background: #e0e0e0;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Merriweather Sans', 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        .screen-label {
+            text-align: center;
+            font-family: 'Merriweather Sans', sans-serif;
+            font-size: 13px;
+            color: #666;
+            margin: 24px 0 8px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        .screen-label:first-of-type { margin-top: 30px; }
+
+        /* ===== CARD ===== */
+        .card-page {
+            width: var(--card-w);
+            height: var(--card-h);
+            margin: 0 auto 20px;
+            background: var(--white);
+            box-shadow: 0 3px 16px rgba(0,0,0,0.15);
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* ============================================================
+           FRONT
+           ============================================================ */
+        .front {
+            display: flex;
+            height: 100%;
+            background: linear-gradient(135deg, var(--indigo) 0%, #1a1a4e 60%, #12123a 100%);
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+        .front .deco {
+            position: absolute;
+            border-radius: 50%;
+        }
+        .front .deco-1 {
+            width: 70px; height: 70px;
+            top: -20px; right: -15px;
+            background: rgba(254,194,77,0.06);
+        }
+        .front .deco-2 {
+            width: 45px; height: 45px;
+            bottom: -12px; left: -10px;
+            background: rgba(244,98,58,0.07);
+        }
+
+        /* Left: logo + brand */
+        .front .brand-side {
+            flex: 0 0 52%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 3mm;
+            position: relative;
+            z-index: 1;
+        }
+        .front .logo {
+            width: 32px;
+            height: 32px;
+            margin-bottom: 4px;
+        }
+        .front .logo svg { width: 100%; height: 100%; }
+        .front h1 {
+            font-size: 12pt;
+            font-weight: 800;
+            line-height: 1.05;
+            margin-bottom: 2px;
+        }
+        .front h1 .highlight { color: var(--gold); }
+        .front .tagline {
+            font-family: 'Merriweather Sans', sans-serif;
+            font-size: 5.5pt;
+            font-weight: 600;
+            color: var(--gold-light);
+            letter-spacing: 0.3px;
+        }
+
+        /* Right: info column */
+        .front .info-side {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 3mm 3.5mm 3mm 3mm;
+            position: relative;
+            z-index: 1;
+        }
+        .front .ages-badge {
+            display: inline-block;
+            align-self: flex-start;
+            background: var(--orange);
+            color: var(--white);
+            font-family: 'Merriweather Sans', sans-serif;
+            font-weight: 700;
+            font-size: 5.5pt;
+            padding: 2px 7px;
+            border-radius: 8px;
+            margin-bottom: 4px;
+        }
+        .front .subjects {
+            font-size: 5pt;
+            color: rgba(255,255,255,0.7);
+            line-height: 1.55;
+            margin-bottom: 5px;
+        }
+        .front .subjects span { color: var(--gold-light); font-weight: 600; font-family: 'Merriweather Sans', sans-serif; font-size: 5.5pt; }
+        .front .mini-features {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+        .front .mini-feat {
+            font-family: 'Merriweather Sans', sans-serif;
+            font-size: 4.5pt;
+            color: rgba(255,255,255,0.6);
+            display: flex;
+            align-items: center;
+            gap: 3px;
+        }
+        .front .mini-feat .bi {
+            font-size: 5.5pt;
+            color: var(--gold);
+        }
+
+        /* Divider line between sides */
+        .front .v-divider {
+            position: absolute;
+            left: 52%;
+            top: 15%;
+            bottom: 15%;
+            width: 1px;
+            background: rgba(254,194,77,0.2);
+            z-index: 1;
+        }
+
+        /* ============================================================
+           BACK
+           ============================================================ */
+        .back {
+            display: flex;
+            height: 100%;
+        }
+
+        /* Left: contact details */
+        .back .contact-side {
+            flex: 0 0 55%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 3mm 2mm 3mm 4mm;
+        }
+        .back .contact-side .website {
+            font-family: 'Merriweather Sans', sans-serif;
+            font-size: 7.5pt;
+            font-weight: 700;
+            color: var(--indigo);
+            margin-bottom: 4px;
+        }
+        .back .contact-line {
+            font-size: 5.5pt;
+            color: var(--gray);
+            display: flex;
+            align-items: center;
+            gap: 3px;
+            margin-bottom: 3px;
+        }
+        .back .contact-line .bi {
+            color: var(--orange);
+            font-size: 6.5pt;
+            flex-shrink: 0;
+        }
+        .back .locations {
+            margin-top: 4px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2px 8px;
+        }
+        .back .loc {
+            font-family: 'Merriweather Sans', sans-serif;
+            font-size: 4.5pt;
+            font-weight: 600;
+            color: var(--indigo);
+            display: flex;
+            align-items: center;
+            gap: 2px;
+        }
+        .back .loc .bi {
+            font-size: 5pt;
+            color: var(--orange);
+        }
+        .back .safe-line {
+            margin-top: 4px;
+            font-size: 4pt;
+            color: #999;
+            display: flex;
+            align-items: center;
+            gap: 2px;
+        }
+        .back .safe-line .bi { color: #66bb6a; font-size: 5pt; }
+
+        /* Right: QR code */
+        .back .qr-side {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 3mm;
+            background: var(--blue-pale);
+        }
+        .back .qr-side .qr-box {
+            width: 30mm;
+            height: 30mm;
+            border-radius: 4px;
+            overflow: hidden;
+            background: var(--white);
+            border: 1.5px solid var(--indigo);
+            margin-bottom: 3px;
+        }
+        .back .qr-side .qr-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        .back .qr-side .scan-text {
+            font-family: 'Merriweather Sans', sans-serif;
+            font-size: 4.5pt;
+            font-weight: 600;
+            color: var(--indigo);
+            text-align: center;
+        }
+        .back .cta-strip {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--orange);
+            color: var(--white);
+            text-align: center;
+            padding: 1.5mm 2mm;
+            font-family: 'Merriweather Sans', sans-serif;
+            font-size: 5pt;
+            font-weight: 700;
+        }
+
+        /* ===== PRINT ===== */
+        @media print {
+            body { background: none; margin: 0; padding: 0; }
+            .screen-label { display: none !important; }
+            .card-page {
+                box-shadow: none;
+                margin: 0;
+                page-break-after: always;
+                page-break-inside: avoid;
+            }
+            @page {
+                size: 90mm 55mm;
+                margin: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ============ FRONT ============ -->
+<p class="screen-label">Front</p>
+<div class="card-page">
+    <div class="front">
+        <div class="deco deco-1"></div>
+        <div class="deco deco-2"></div>
+        <div class="v-divider"></div>
+
+        <div class="brand-side">
+            <div class="logo">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="shape-rendering:geometricPrecision;">
+                    <g><path fill="#fee466" d="M 237.5,-0.5 C 243.5,-0.5 249.5,-0.5 255.5,-0.5C 255.5,32.8333 255.5,66.1667 255.5,99.5C 255.5,101.5 255.5,103.5 255.5,105.5C 245.21,144.658 235.21,183.992 225.5,223.5C 226.137,234.974 232.137,240.141 243.5,239C 249.211,238.118 252.878,234.951 254.5,229.5C 255.499,272.663 255.832,315.997 255.5,359.5C 229.833,359.5 204.167,359.5 178.5,359.5C 175.299,337.766 167.133,318.099 154,300.5C 141.756,284.344 129.756,268.011 118,251.5C 87.6098,205.469 81.9431,156.469 101,104.5C 126.957,44.1037 172.457,9.10367 237.5,-0.5 Z"/></g>
+                    <g><path fill="#fec24d" d="M 255.5,-0.5 C 261.5,-0.5 267.5,-0.5 273.5,-0.5C 338.54,9.10279 384.04,44.1028 410,104.5C 429.057,156.469 423.39,205.469 393,251.5C 376.929,272.64 361.596,294.307 347,316.5C 339.297,329.898 334.463,344.231 332.5,359.5C 306.833,359.5 281.167,359.5 255.5,359.5C 255.832,315.997 255.499,272.663 254.5,229.5C 255.038,227.883 255.371,226.216 255.5,224.5C 266.179,184.619 276.179,144.452 285.5,104C 283.445,92.9585 276.778,88.2919 265.5,90C 260.98,92.0223 257.647,95.189 255.5,99.5C 255.5,66.1667 255.5,32.8333 255.5,-0.5 Z"/></g>
+                    <g><path fill="#2a2966" d="M 255.5,224.5 C 255.5,184.833 255.5,145.167 255.5,105.5C 255.5,103.5 255.5,101.5 255.5,99.5C 257.647,95.189 260.98,92.0223 265.5,90C 276.778,88.2919 283.445,92.9585 285.5,104C 276.179,144.452 266.179,184.619 255.5,224.5 Z"/></g>
+                    <g><path fill="#4e4d98" d="M 255.5,105.5 C 255.5,145.167 255.5,184.833 255.5,224.5C 255.371,226.216 255.038,227.883 254.5,229.5C 252.878,234.951 249.211,238.118 243.5,239C 232.137,240.141 226.137,234.974 225.5,223.5C 235.21,183.992 245.21,144.658 255.5,105.5 Z"/></g>
+                    <g><path fill="#504e98" d="M 191.5,119.5 C 202.385,118.589 208.718,123.422 210.5,134C 210.135,137.763 208.968,141.263 207,144.5C 200.319,151.014 193.819,157.681 187.5,164.5C 193.819,171.319 200.319,177.986 207,184.5C 212.755,194.215 210.922,202.049 201.5,208C 195.811,210.33 190.477,209.664 185.5,206C 175,195.5 164.5,185 154,174.5C 149.421,167.803 149.421,161.136 154,154.5C 164.5,144 175,133.5 185.5,123C 187.727,122.059 189.727,120.892 191.5,119.5 Z"/></g>
+                    <g><path fill="#2d2a65" d="M 311.5,119.5 C 316.548,119.127 321.215,120.294 325.5,123C 336,133.5 346.5,144 357,154.5C 361.579,161.136 361.579,167.803 357,174.5C 346.5,185 336,195.5 325.5,206C 317.907,211.056 310.741,210.556 304,204.5C 299.421,197.803 299.421,191.136 304,184.5C 310.681,177.986 317.181,171.319 323.5,164.5C 317.181,157.681 310.681,151.014 304,144.5C 297.874,133.449 300.374,125.116 311.5,119.5 Z"/></g>
+                    <g><path fill="#e6f7ff" d="M 178.5,359.5 C 204.167,359.5 229.833,359.5 255.5,359.5C 255.5,369.5 255.5,379.5 255.5,389.5C 230.5,389.5 205.5,389.5 180.5,389.5C 173.492,389.666 166.492,389.5 159.5,389C 150.525,383.848 148.025,376.348 152,366.5C 153.167,364 155,362.167 157.5,361C 164.385,359.575 171.385,359.075 178.5,359.5 Z"/></g>
+                    <g><path fill="#cce6ff" d="M 255.5,359.5 C 281.167,359.5 306.833,359.5 332.5,359.5C 339.615,359.075 346.615,359.575 353.5,361C 358.592,364.017 360.926,368.517 360.5,374.5C 360.926,380.483 358.592,384.983 353.5,388C 345.946,389.432 338.279,389.932 330.5,389.5C 305.5,389.5 280.5,389.5 255.5,389.5C 255.5,379.5 255.5,369.5 255.5,359.5 Z"/></g>
+                    <g><path fill="#cbe6fe" d="M 180.5,389.5 C 205.5,389.5 230.5,389.5 255.5,389.5C 255.5,400.167 255.5,410.833 255.5,421.5C 230.5,421.5 205.5,421.5 180.5,421.5C 180.5,410.833 180.5,400.167 180.5,389.5 Z"/></g>
+                    <g><path fill="#b4c9f1" d="M 255.5,389.5 C 280.5,389.5 305.5,389.5 330.5,389.5C 330.5,400.167 330.5,410.833 330.5,421.5C 305.5,421.5 280.5,421.5 255.5,421.5C 255.5,410.833 255.5,400.167 255.5,389.5 Z"/></g>
+                    <g><path fill="#e6f7ff" d="M 180.5,421.5 C 205.5,421.5 230.5,421.5 255.5,421.5C 255.5,431.5 255.5,441.5 255.5,451.5C 230.5,451.5 205.5,451.5 180.5,451.5C 173.492,451.666 166.492,451.5 159.5,451C 150.525,445.848 148.025,438.348 152,428.5C 153.167,426 155,424.167 157.5,423C 165.054,421.568 172.721,421.068 180.5,421.5 Z"/></g>
+                    <g><path fill="#cce6ff" d="M 255.5,421.5 C 280.5,421.5 305.5,421.5 330.5,421.5C 337.508,421.334 344.508,421.5 351.5,422C 360.475,427.152 362.975,434.652 359,444.5C 357.833,447 356,448.833 353.5,450C 345.946,451.432 338.279,451.932 330.5,451.5C 305.5,451.5 280.5,451.5 255.5,451.5C 255.5,441.5 255.5,431.5 255.5,421.5 Z"/></g>
+                    <g><path fill="#cbe6ff" d="M 180.5,451.5 C 205.5,451.5 230.5,451.5 255.5,451.5C 255.5,471.5 255.5,491.5 255.5,511.5C 242.167,511.5 228.833,511.5 215.5,511.5C 187.469,501.479 175.802,481.479 180.5,451.5 Z"/></g>
+                    <g><path fill="#b5c9f2" d="M 255.5,451.5 C 280.5,451.5 305.5,451.5 330.5,451.5C 335.193,481.491 323.526,501.491 295.5,511.5C 282.167,511.5 268.833,511.5 255.5,511.5C 255.5,491.5 255.5,471.5 255.5,451.5 Z"/></g>
+                </svg>
+            </div>
+            <h1>Spark <span class="highlight">Coding</span></h1>
+            <div class="tagline">Kids Coding Classes</div>
+        </div>
+
+        <div class="info-side">
+            <div class="ages-badge">Ages 8 – 18</div>
+            <div class="subjects">
+                <span>Scratch</span> &bull; <span>Python</span> &bull; <span>Arduino</span><br>
+                <span>Robotics</span> &bull; <span>AI</span> &bull; <span>Web Dev</span>
+            </div>
+            <div class="mini-features">
+                <div class="mini-feat"><i class="bi bi-people-fill"></i> Max 3 students per class</div>
+                <div class="mini-feat"><i class="bi bi-award-fill"></i> Instructor with 15+ yrs in big tech</div>
+                <div class="mini-feat"><i class="bi bi-signpost-split-fill"></i> Personalised learning paths</div>
+                <div class="mini-feat"><i class="bi bi-gift-fill"></i> Free trial — no commitment</div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- ============ BACK ============ -->
+<p class="screen-label">Back</p>
+<div class="card-page" style="position:relative;">
+    <div class="back">
+
+        <div class="contact-side">
+            <div class="website">sparkcoding.com.au</div>
+            <div class="contact-line">
+                <i class="bi bi-telephone-fill"></i> 04 5566 6640
+            </div>
+            <div class="contact-line">
+                <i class="bi bi-envelope-fill"></i> admin@sparkcoding.com.au
+            </div>
+            <div class="contact-line">
+                <i class="bi bi-globe2"></i> sparkcoding.com.au
+            </div>
+            <div class="locations">
+                <span class="loc"><i class="bi bi-pin-map-fill"></i> Rouse Hill</span>
+                <span class="loc"><i class="bi bi-pin-map-fill"></i> Castle Hill</span>
+                <span class="loc"><i class="bi bi-pin-map-fill"></i> Kellyville</span>
+                <span class="loc"><i class="bi bi-pin-map-fill"></i> NW Sydney</span>
+            </div>
+            <div class="safe-line">
+                <i class="bi bi-shield-check"></i> NSW Child Safety Compliant
+            </div>
+        </div>
+
+        <div class="qr-side">
+            <div class="qr-box">
+                <img src="../src/assets/img/qr.jpg" alt="Scan to visit sparkcoding.com.au">
+            </div>
+            <div class="scan-text">Scan to book<br>FREE trial</div>
+        </div>
+
+        <div class="cta-strip">
+            <i class="bi bi-gift"></i>&nbsp; Book your FREE trial today!
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
