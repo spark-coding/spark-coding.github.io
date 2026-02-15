@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spark Coding – Tri-Fold Brochure</title>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@400;600;700;800&family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        /* ===== RESET & BASE ===== */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --orange: #f4623a;
+            --orange-dark: #d94e2a;
+            --indigo: #2a2966;
+            --indigo-mid: #4e4d98;
+            --gold: #fec24d;
+            --gold-light: #fee466;
+            --blue-light: #e6f7ff;
+            --blue-pale: #f0f9ff;
+            --dark: #1e1e3a;
+            --gray: #6c757d;
+            --gray-light: #f8f9fa;
+            --white: #ffffff;
+
+            /* A4 landscape dimensions */
+            --page-w: 297mm;
+            --page-h: 210mm;
+            --panel-w: 99mm;
+            --panel-pad: 7mm;
+            --bleed: 0mm;
+        }
+
+        body {
+            font-family: 'Merriweather', Georgia, serif;
+            font-size: 9pt;
+            line-height: 1.45;
+            color: #333;
+            background: #e0e0e0;
+        }
+
+        h1, h2, h3, h4, h5, h6, .heading {
+            font-family: 'Merriweather Sans', 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        /* ===== SCREEN LAYOUT ===== */
+        .screen-label {
+            text-align: center;
+            font-family: 'Merriweather Sans', sans-serif;
+            font-size: 14px;
+            color: #666;
+            margin: 20px 0 8px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        .screen-label:first-of-type { margin-top: 30px; }
+
+        /* ===== PAGE (A4 Landscape) ===== */
+        .page {
+            width: var(--page-w);
+            height: var(--page-h);
+            margin: 0 auto 30px;
+            display: flex;
+            background: var(--white);
+            box-shadow: 0 4px 24px rgba(0,0,0,0.15);
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Panel base */
+        .panel {
+            width: var(--panel-w);
+            height: var(--page-h);
+            padding: var(--panel-pad);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Fold guides on screen */
+        .page .panel:not(:last-child) {
+            border-right: 1px dashed #ccc;
+        }
+
+        /* ============================================================
+           OUTSIDE – Right=Front Cover, Centre=Back, Left=Inside Flap
+           ============================================================ */
+
+        /* --- FRONT COVER (outside right panel) --- */
+        .front-cover {
+            background: linear-gradient(135deg, var(--indigo) 0%, #1a1a4e 60%, #12123a 100%);
+            color: var(--white);
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        .front-cover .logo-container {
+            width: 72px;
+            height: 72px;
+            margin: 0 auto 14px;
+        }
+        .front-cover .logo-container svg {
+            width: 100%;
+            height: 100%;
+        }
+        .front-cover h1 {
+            font-size: 20pt;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            margin-bottom: 4px;
+            line-height: 1.1;
+        }
+        .front-cover h1 .highlight {
+            color: var(--gold);
+        }
+        .front-cover .tagline {
+            font-size: 10.5pt;
+            color: var(--gold-light);
+            font-weight: 600;
+            font-family: 'Merriweather Sans', sans-serif;
+            margin-bottom: 18px;
+            letter-spacing: 0.5px;
+        }
+        .front-cover .hero-divider {
+            width: 50px;
+            height: 3px;
+            background: var(--orange);
+            margin: 0 auto 18px;
+            border-radius: 2px;
+        }
+        .front-cover .ages-badge {
+            display: inline-block;
+            background: var(--orange);
+            color: var(--white);
+            font-family: 'Merriweather Sans', sans-serif;
+            font-weight: 700;
+            font-size: 10pt;
+            padding: 6px 18px;
+            border-radius: 20px;
+            margin-bottom: 18px;
+        }
+        .front-cover .subjects {
+            font-size: 8pt;
+            color: rgba(255,255,255,0.8);
+            line-height: 1.7;
+            letter-spacing: 0.3px;
+        }
+        .front-cover .subjects span {
+            display: inline;
+        }
+        .front-cover .dot-sep {
+            color: var(--gold);
+            margin: 0 4px;
+        }
+        .front-cover .spark-deco {
+            position: absolute;
+            bottom: -30px;
+            right: -30px;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: rgba(254,194,77,0.07);
+        }
+        .front-cover .spark-deco-2 {
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: rgba(244,98,58,0.08);
+        }
+
+        /* --- BACK COVER (outside centre panel) --- */
+        .back-cover {
+            background: var(--white);
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        .back-cover .cta-box {
+            background: linear-gradient(135deg, var(--orange), var(--orange-dark));
+            color: var(--white);
+            border-radius: 10px;
+            padding: 14px 12px;
+            margin-bottom: 16px;
+        }
+        .back-cover .cta-box h3 {
+            font-size: 12pt;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+        .back-cover .cta-box p {
+            font-size: 8pt;
+            margin: 0;
+            opacity: 0.95;
+        }
+        .back-cover .qr-placeholder {
+            width: 100px;
+            height: 100px;
+            border: 2px solid var(--indigo);
+            border-radius: 8px;
+            margin: 0 auto 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--white);
+            overflow: hidden;
+        }
+        .back-cover .website {
+            font-family: 'Merriweather Sans', sans-serif;
+            font-size: 10pt;
+            font-weight: 700;
+            color: var(--indigo);
+            margin-bottom: 16px;
+        }
+        .back-cover .contact-line {
+            font-size: 8pt;
+            color: var(--gray);
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+        .back-cover .contact-line .bi {
+            color: var(--orange);
+            font-size: 10pt;
+        }
+        .back-cover .eco-note {
+            margin-top: 16px;
+            font-size: 6.5pt;
+            color: #aaa;
+            font-style: italic;
+        }
+        .back-cover .eco-note .bi {
+            color: #7cb342;
+            margin-right: 2px;
+        }
+
+        /* --- INSIDE FLAP (outside left panel – first thing seen when opening) --- */
+        .inside-flap {
+            background: var(--blue-pale);
+            justify-content: center;
+            text-align: center;
+            padding-top: 14mm;
+            padding-bottom: 10mm;
+        }
+        .inside-flap h3 {
+            font-size: 11pt;
+            font-weight: 700;
+            color: var(--indigo);
+            margin-bottom: 10px;
+        }
+        .inside-flap .flap-divider {
+            width: 35px;
+            height: 2.5px;
+            background: var(--orange);
+            margin: 0 auto 14px;
+            border-radius: 2px;
+        }
+        .inside-flap .testimonial {
+            background: var(--white);
+            border-radius: 8px;
+            padding: 12px 10px;
+            margin-bottom: 12px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+            text-align: left;
+            position: relative;
+        }
+        .inside-flap .testimonial::before {
+            content: '\201C';
+            font-size: 28pt;
+            color: var(--gold);
+            font-family: Georgia, serif;
+            position: absolute;
+            top: 2px;
+            left: 8px;
+            line-height: 1;
+        }
+        .inside-flap .testimonial p {
+            font-size: 7.5pt;
+            font-style: italic;
+            color: #555;
+            padding-left: 18px;
+            margin-bottom: 4px;
+        }
+        .inside-flap .testimonial .author {
+            font-size: 6.5pt;
+            font-weight: 700;
+            color: var(--indigo);
+            font-family: 'Merriweather Sans', sans-serif;
+            padding-left: 18px;
+            font-style: normal;
+        }
+        .inside-flap .free-trial-badge {
+            display: inline-block;
+            background: var(--orange);
+            color: var(--white);
+            font-family: 'Merriweather Sans', sans-serif;
+            font-weight: 700;
+            font-size: 9pt;
+            padding: 8px 16px;
+            border-radius: 20px;
+            margin-top: 8px;
+        }
+
+        /* ============================================================
+           INSIDE – Left / Centre / Right
+           ============================================================ */
+
+        /* --- INSIDE LEFT: What We Teach --- */
+        .inside-left {
+            background: var(--white);
+            justify-content: center;
+        }
+        .inside-left h2 {
+            font-size: 12pt;
+            font-weight: 700;
+            color: var(--indigo);
+            margin-bottom: 6px;
+            text-align: center;
+        }
+        .inside-left .section-divider {
+            width: 35px;
+            height: 2.5px;
+            background: var(--orange);
+            margin: 0 auto 14px;
+            border-radius: 2px;
+        }
+        .inside-left .course-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            margin-bottom: 11px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .inside-left .course-item:last-child {
+            border-bottom: none;
+        }
+        .inside-left .course-icon {
+            flex-shrink: 0;
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13pt;
+            margin-top: 1px;
+        }
+        .inside-left .course-icon.scratch { background: #fff3e0; color: #f57c00; }
+        .inside-left .course-icon.python { background: #e8f5e9; color: #388e3c; }
+        .inside-left .course-icon.arduino { background: #e3f2fd; color: #1976d2; }
+        .inside-left .course-icon.robot { background: #fce4ec; color: #c62828; }
+        .inside-left .course-icon.ai { background: #f3e5f5; color: #7b1fa2; }
+        .inside-left .course-icon.web { background: #e0f7fa; color: #00838f; }
+        .inside-left .course-name {
+            font-family: 'Merriweather Sans', sans-serif;
+            font-weight: 700;
+            font-size: 8pt;
+            color: var(--dark);
+            margin-bottom: 1px;
+        }
+        .inside-left .course-desc {
+            font-size: 6.8pt;
+            color: var(--gray);
+            line-height: 1.35;
+        }
+        .inside-left .age-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+            margin-top: 12px;
+            justify-content: center;
+        }
+        .inside-left .age-tag {
+            font-family: 'Merriweather Sans', sans-serif;
+            font-size: 6pt;
+            font-weight: 600;
+            padding: 3px 8px;
+            border-radius: 10px;
+            background: var(--blue-light);
+            color: var(--indigo);
+        }
+
+        /* --- INSIDE CENTRE: Why Spark Coding --- */
+        .inside-centre {
+            background: linear-gradient(180deg, var(--indigo) 0%, #1e1e50 100%);
+            color: var(--white);
+            justify-content: center;
+            text-align: center;
+        }
+        .inside-centre h2 {
+            font-size: 12pt;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+        .inside-centre .section-divider {
+            width: 35px;
+            height: 2.5px;
+            background: var(--gold);
+            margin: 0 auto 16px;
+            border-radius: 2px;
+        }
+        .inside-centre .feature {
+            margin-bottom: 14px;
+            text-align: left;
+            display: flex;
+            gap: 8px;
+            align-items: flex-start;
+        }
+        .inside-centre .feature-icon {
+            flex-shrink: 0;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: rgba(254,194,77,0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13pt;
+            color: var(--gold);
+        }
+        .inside-centre .feature-title {
+            font-family: 'Merriweather Sans', sans-serif;
+            font-weight: 700;
+            font-size: 8.5pt;
+            margin-bottom: 2px;
+            color: var(--gold-light);
+        }
+        .inside-centre .feature-desc {
+            font-size: 7pt;
+            line-height: 1.35;
+            color: rgba(255,255,255,0.78);
+        }
+        .inside-centre .stat-row {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 14px;
+        }
+        .inside-centre .stat {
+            background: rgba(255,255,255,0.08);
+            border-radius: 8px;
+            padding: 8px 6px;
+            flex: 1;
+            text-align: center;
+        }
+        .inside-centre .stat-number {
+            font-family: 'Merriweather Sans', sans-serif;
+            font-weight: 800;
+            font-size: 16pt;
+            color: var(--gold);
+            line-height: 1;
+        }
+        .inside-centre .stat-label {
+            font-size: 6pt;
+            color: rgba(255,255,255,0.65);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 2px;
+        }
+
+        /* --- INSIDE RIGHT: Locations & How It Works --- */
+        .inside-right {
+            background: var(--white);
+            justify-content: center;
+        }
+        .inside-right h2 {
+            font-size: 11pt;
+            font-weight: 700;
+            color: var(--indigo);
+            margin-bottom: 6px;
+            text-align: center;
+        }
+        .inside-right .section-divider {
+            width: 35px;
+            height: 2.5px;
+            background: var(--orange);
+            margin: 0 auto 14px;
+            border-radius: 2px;
+        }
+        .inside-right .step {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 12px;
+            align-items: flex-start;
+        }
+        .inside-right .step-num {
+            flex-shrink: 0;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--orange);
+            color: var(--white);
+            font-family: 'Merriweather Sans', sans-serif;
+            font-weight: 800;
+            font-size: 10pt;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1;
+        }
+        .inside-right .step-title {
+            font-family: 'Merriweather Sans', sans-serif;
+            font-weight: 700;
+            font-size: 8pt;
+            color: var(--dark);
+            margin-bottom: 2px;
+        }
+        .inside-right .step-desc {
+            font-size: 7pt;
+            color: var(--gray);
+            line-height: 1.35;
+        }
+
+        .inside-right .locations-section {
+            margin-top: 14px;
+            background: var(--blue-pale);
+            border-radius: 8px;
+            padding: 14px 12px;
+        }
+        .inside-right .locations-section h4 {
+            font-size: 8.5pt;
+            font-weight: 700;
+            color: var(--indigo);
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        .inside-right .location-grid {
+            display: grid;
+            grid-template-columns: auto auto;
+            gap: 8px 24px;
+            justify-content: center;
+        }
+        .inside-right .location-chip {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-family: 'Merriweather Sans', sans-serif;
+            font-size: 7.5pt;
+            font-weight: 600;
+            color: var(--indigo);
+            white-space: nowrap;
+        }
+        .inside-right .location-chip .bi {
+            color: var(--orange);
+            font-size: 8pt;
+        }
+        .inside-right .safe-badge {
+            margin-top: 14px;
+            background: #e8f5e9;
+            border-radius: 8px;
+            padding: 8px 10px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .inside-right .safe-badge .bi {
+            font-size: 16pt;
+            color: #388e3c;
+            flex-shrink: 0;
+        }
+        .inside-right .safe-badge p {
+            font-size: 6.5pt;
+            color: #2e7d32;
+            margin: 0;
+            line-height: 1.3;
+        }
+
+        /* ===== PRINT STYLES ===== */
+        @media print {
+            body { background: none; margin: 0; padding: 0; }
+            .screen-label { display: none !important; }
+            .page {
+                box-shadow: none;
+                margin: 0;
+                page-break-after: always;
+                page-break-inside: avoid;
+            }
+            .page .panel:not(:last-child) {
+                border-right: none;
+            }
+            @page {
+                size: A4 landscape;
+                margin: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ============ OUTSIDE (print side 1) ============ -->
+<p class="screen-label">Outside (print this side first)</p>
+<div class="page" id="outside">
+
+    <!-- OUTSIDE LEFT = Inside Flap (seen when opening) -->
+    <div class="panel inside-flap">
+        <h3>What Parents Say</h3>
+        <div class="flap-divider"></div>
+
+        <div class="testimonial">
+            <p>My son went from never having coded to building his own games in Scratch within weeks. The small class size makes such a difference.</p>
+            <div class="author">- Parent, Rouse Hill</div>
+        </div>
+
+        <div class="testimonial">
+            <p>The instructors really know how to keep kids engaged. My daughter now wants to study computer science!</p>
+            <div class="author">- Parent, Castle Hill</div>
+        </div>
+
+        <div class="testimonial">
+            <p>Finally, a coding class that adapts to my child's level instead of a one-size-fits-all approach.</p>
+            <div class="author">- Parent, Kellyville</div>
+        </div>
+
+        <div class="free-trial-badge">
+            <i class="bi bi-gift"></i>&nbsp; FREE Trial Session
+        </div>
+    </div>
+
+    <!-- OUTSIDE CENTRE = Back Cover -->
+    <div class="panel back-cover">
+        <div class="cta-box">
+            <h3>Book Your FREE Trial</h3>
+            <p>No commitment required.<br>See the difference personalised coding tuition makes.</p>
+        </div>
+
+        <div class="qr-placeholder">
+            <img src="src/assets/img/qr.jpg" alt="Scan to visit sparkcoding.com.au" style="width:100%;height:100%;object-fit:contain;border-radius:6px;">
+        </div>
+        <div class="website">sparkcoding.com.au</div>
+
+        <div class="contact-line">
+            <i class="bi bi-envelope-fill"></i>
+            admin@sparkcoding.com.au
+        </div>
+
+        <div class="contact-line" style="margin-top:2px">
+            <i class="bi bi-globe2"></i>
+            sparkcoding.com.au
+        </div>
+
+        <div class="eco-note">
+            <i class="bi bi-recycle"></i> Printed on recycled paper with soy-based inks
+        </div>
+    </div>
+
+    <!-- OUTSIDE RIGHT = Front Cover -->
+    <div class="panel front-cover">
+        <div class="spark-deco"></div>
+        <div class="spark-deco-2"></div>
+
+        <!-- Inline SVG Logo -->
+        <div class="logo-container">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="shape-rendering:geometricPrecision;">
+                <g><path fill="#fee466" d="M 237.5,-0.5 C 243.5,-0.5 249.5,-0.5 255.5,-0.5C 255.5,32.8333 255.5,66.1667 255.5,99.5C 255.5,101.5 255.5,103.5 255.5,105.5C 245.21,144.658 235.21,183.992 225.5,223.5C 226.137,234.974 232.137,240.141 243.5,239C 249.211,238.118 252.878,234.951 254.5,229.5C 255.499,272.663 255.832,315.997 255.5,359.5C 229.833,359.5 204.167,359.5 178.5,359.5C 175.299,337.766 167.133,318.099 154,300.5C 141.756,284.344 129.756,268.011 118,251.5C 87.6098,205.469 81.9431,156.469 101,104.5C 126.957,44.1037 172.457,9.10367 237.5,-0.5 Z"/></g>
+                <g><path fill="#fec24d" d="M 255.5,-0.5 C 261.5,-0.5 267.5,-0.5 273.5,-0.5C 338.54,9.10279 384.04,44.1028 410,104.5C 429.057,156.469 423.39,205.469 393,251.5C 376.929,272.64 361.596,294.307 347,316.5C 339.297,329.898 334.463,344.231 332.5,359.5C 306.833,359.5 281.167,359.5 255.5,359.5C 255.832,315.997 255.499,272.663 254.5,229.5C 255.038,227.883 255.371,226.216 255.5,224.5C 266.179,184.619 276.179,144.452 285.5,104C 283.445,92.9585 276.778,88.2919 265.5,90C 260.98,92.0223 257.647,95.189 255.5,99.5C 255.5,66.1667 255.5,32.8333 255.5,-0.5 Z"/></g>
+                <g><path fill="#2a2966" d="M 255.5,224.5 C 255.5,184.833 255.5,145.167 255.5,105.5C 255.5,103.5 255.5,101.5 255.5,99.5C 257.647,95.189 260.98,92.0223 265.5,90C 276.778,88.2919 283.445,92.9585 285.5,104C 276.179,144.452 266.179,184.619 255.5,224.5 Z"/></g>
+                <g><path fill="#4e4d98" d="M 255.5,105.5 C 255.5,145.167 255.5,184.833 255.5,224.5C 255.371,226.216 255.038,227.883 254.5,229.5C 252.878,234.951 249.211,238.118 243.5,239C 232.137,240.141 226.137,234.974 225.5,223.5C 235.21,183.992 245.21,144.658 255.5,105.5 Z"/></g>
+                <g><path fill="#504e98" d="M 191.5,119.5 C 202.385,118.589 208.718,123.422 210.5,134C 210.135,137.763 208.968,141.263 207,144.5C 200.319,151.014 193.819,157.681 187.5,164.5C 193.819,171.319 200.319,177.986 207,184.5C 212.755,194.215 210.922,202.049 201.5,208C 195.811,210.33 190.477,209.664 185.5,206C 175,195.5 164.5,185 154,174.5C 149.421,167.803 149.421,161.136 154,154.5C 164.5,144 175,133.5 185.5,123C 187.727,122.059 189.727,120.892 191.5,119.5 Z"/></g>
+                <g><path fill="#2d2a65" d="M 311.5,119.5 C 316.548,119.127 321.215,120.294 325.5,123C 336,133.5 346.5,144 357,154.5C 361.579,161.136 361.579,167.803 357,174.5C 346.5,185 336,195.5 325.5,206C 317.907,211.056 310.741,210.556 304,204.5C 299.421,197.803 299.421,191.136 304,184.5C 310.681,177.986 317.181,171.319 323.5,164.5C 317.181,157.681 310.681,151.014 304,144.5C 297.874,133.449 300.374,125.116 311.5,119.5 Z"/></g>
+                <g><path fill="#e6f7ff" d="M 178.5,359.5 C 204.167,359.5 229.833,359.5 255.5,359.5C 255.5,369.5 255.5,379.5 255.5,389.5C 230.5,389.5 205.5,389.5 180.5,389.5C 173.492,389.666 166.492,389.5 159.5,389C 150.525,383.848 148.025,376.348 152,366.5C 153.167,364 155,362.167 157.5,361C 164.385,359.575 171.385,359.075 178.5,359.5 Z"/></g>
+                <g><path fill="#cce6ff" d="M 255.5,359.5 C 281.167,359.5 306.833,359.5 332.5,359.5C 339.615,359.075 346.615,359.575 353.5,361C 358.592,364.017 360.926,368.517 360.5,374.5C 360.926,380.483 358.592,384.983 353.5,388C 345.946,389.432 338.279,389.932 330.5,389.5C 305.5,389.5 280.5,389.5 255.5,389.5C 255.5,379.5 255.5,369.5 255.5,359.5 Z"/></g>
+                <g><path fill="#cbe6fe" d="M 180.5,389.5 C 205.5,389.5 230.5,389.5 255.5,389.5C 255.5,400.167 255.5,410.833 255.5,421.5C 230.5,421.5 205.5,421.5 180.5,421.5C 180.5,410.833 180.5,400.167 180.5,389.5 Z"/></g>
+                <g><path fill="#b4c9f1" d="M 255.5,389.5 C 280.5,389.5 305.5,389.5 330.5,389.5C 330.5,400.167 330.5,410.833 330.5,421.5C 305.5,421.5 280.5,421.5 255.5,421.5C 255.5,410.833 255.5,400.167 255.5,389.5 Z"/></g>
+                <g><path fill="#e6f7ff" d="M 180.5,421.5 C 205.5,421.5 230.5,421.5 255.5,421.5C 255.5,431.5 255.5,441.5 255.5,451.5C 230.5,451.5 205.5,451.5 180.5,451.5C 173.492,451.666 166.492,451.5 159.5,451C 150.525,445.848 148.025,438.348 152,428.5C 153.167,426 155,424.167 157.5,423C 165.054,421.568 172.721,421.068 180.5,421.5 Z"/></g>
+                <g><path fill="#cce6ff" d="M 255.5,421.5 C 280.5,421.5 305.5,421.5 330.5,421.5C 337.508,421.334 344.508,421.5 351.5,422C 360.475,427.152 362.975,434.652 359,444.5C 357.833,447 356,448.833 353.5,450C 345.946,451.432 338.279,451.932 330.5,451.5C 305.5,451.5 280.5,451.5 255.5,451.5C 255.5,441.5 255.5,431.5 255.5,421.5 Z"/></g>
+                <g><path fill="#cbe6ff" d="M 180.5,451.5 C 205.5,451.5 230.5,451.5 255.5,451.5C 255.5,471.5 255.5,491.5 255.5,511.5C 242.167,511.5 228.833,511.5 215.5,511.5C 187.469,501.479 175.802,481.479 180.5,451.5 Z"/></g>
+                <g><path fill="#b5c9f2" d="M 255.5,451.5 C 280.5,451.5 305.5,451.5 330.5,451.5C 335.193,481.491 323.526,501.491 295.5,511.5C 282.167,511.5 268.833,511.5 255.5,511.5C 255.5,491.5 255.5,471.5 255.5,451.5 Z"/></g>
+            </svg>
+        </div>
+
+        <h1>Spark<br><span class="highlight">Coding</span></h1>
+        <div class="tagline">Kids Coding Classes</div>
+        <div class="hero-divider"></div>
+        <div class="ages-badge">Ages 8 – 18</div>
+        <div class="subjects">
+            <span>Scratch</span><span class="dot-sep">&bull;</span>
+            <span>Python</span><span class="dot-sep">&bull;</span>
+            <span>Arduino</span><br>
+            <span>Robotics</span><span class="dot-sep">&bull;</span>
+            <span>AI</span><span class="dot-sep">&bull;</span>
+            <span>Web Dev</span>
+        </div>
+    </div>
+
+</div>
+
+<!-- ============ INSIDE (print side 2) ============ -->
+<p class="screen-label">Inside (print on reverse)</p>
+<div class="page" id="inside">
+
+    <!-- INSIDE LEFT: What We Teach -->
+    <div class="panel inside-left">
+        <h2>What We Teach</h2>
+        <div class="section-divider"></div>
+
+        <div class="course-item">
+            <div class="course-icon scratch"><i class="bi bi-puzzle"></i></div>
+            <div>
+                <div class="course-name">Scratch</div>
+                <div class="course-desc">Visual block-based coding. Perfect for beginners to learn programming logic through games and animations.</div>
+            </div>
+        </div>
+
+        <div class="course-item">
+            <div class="course-icon python"><i class="bi bi-terminal"></i></div>
+            <div>
+                <div class="course-name">Python</div>
+                <div class="course-desc">Industry-standard text-based language. Build real apps, automate tasks, and prepare for further study.</div>
+            </div>
+        </div>
+
+        <div class="course-item">
+            <div class="course-icon arduino"><i class="bi bi-cpu"></i></div>
+            <div>
+                <div class="course-name">Arduino</div>
+                <div class="course-desc">Hands-on electronics and microcontrollers. Make LEDs blink, sensors react, and motors move.</div>
+            </div>
+        </div>
+
+        <div class="course-item">
+            <div class="course-icon robot"><i class="bi bi-robot"></i></div>
+            <div>
+                <div class="course-name">Robotics</div>
+                <div class="course-desc">Design, build and program robots. Combine coding with engineering and creative problem-solving.</div>
+            </div>
+        </div>
+
+        <div class="course-item">
+            <div class="course-icon ai"><i class="bi bi-stars"></i></div>
+            <div>
+                <div class="course-name">AI & Machine Learning</div>
+                <div class="course-desc">Explore the technology shaping our future. Train models and understand how AI really works.</div>
+            </div>
+        </div>
+
+        <div class="course-item">
+            <div class="course-icon web"><i class="bi bi-code-slash"></i></div>
+            <div>
+                <div class="course-name">Web Development</div>
+                <div class="course-desc">HTML, CSS &amp; JavaScript. Design and build real websites from scratch.</div>
+            </div>
+        </div>
+
+        <div class="age-tags">
+            <span class="age-tag">Yr 3-4</span>
+            <span class="age-tag">Yr 5-6</span>
+            <span class="age-tag">Yr 7-8</span>
+            <span class="age-tag">Yr 9-10</span>
+            <span class="age-tag">Yr 11-12</span>
+        </div>
+    </div>
+
+    <!-- INSIDE CENTRE: Why Spark Coding -->
+    <div class="panel inside-centre">
+        <h2>Why Spark Coding?</h2>
+        <div class="section-divider"></div>
+
+        <div class="feature">
+            <div class="feature-icon"><i class="bi bi-people"></i></div>
+            <div>
+                <div class="feature-title">Tiny Classes, Big Results</div>
+                <div class="feature-desc">Maximum 3 students per session. Your child gets real attention, not lost in a crowd.</div>
+            </div>
+        </div>
+
+        <div class="feature">
+            <div class="feature-icon"><i class="bi bi-award"></i></div>
+            <div>
+                <div class="feature-title">Industry Expert Instructors</div>
+                <div class="feature-desc">15+ years experience from Tencent and ASX 200 companies. Real-world skills, not just theory.</div>
+            </div>
+        </div>
+
+        <div class="feature">
+            <div class="feature-icon"><i class="bi bi-signpost-split"></i></div>
+            <div>
+                <div class="feature-title">Personalised Learning Paths</div>
+                <div class="feature-desc">Every student gets a customised curriculum matched to their pace, interests and goals.</div>
+            </div>
+        </div>
+
+        <div class="feature">
+            <div class="feature-icon"><i class="bi bi-lightbulb"></i></div>
+            <div>
+                <div class="feature-title">Beyond Just Coding</div>
+                <div class="feature-desc">We build computational thinking, problem-solving and creativity — skills for any future career.</div>
+            </div>
+        </div>
+
+        <div class="stat-row">
+            <div class="stat">
+                <div class="stat-number">3</div>
+                <div class="stat-label">Max class<br>size</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">15+</div>
+                <div class="stat-label">Years<br>experience</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">6</div>
+                <div class="stat-label">Courses<br>offered</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- INSIDE RIGHT: How It Works + Locations -->
+    <div class="panel inside-right">
+        <h2>Getting Started</h2>
+        <div class="section-divider"></div>
+
+        <div class="step">
+            <div class="step-num">1</div>
+            <div>
+                <div class="step-title">Book a FREE Trial</div>
+                <div class="step-desc">Visit our website or scan the QR code. Fill in a quick form — no commitment, no payment.</div>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="step-num">2</div>
+            <div>
+                <div class="step-title">We Match Your Child</div>
+                <div class="step-desc">We assess their level and interests, then place them in the right course and group.</div>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="step-num">3</div>
+            <div>
+                <div class="step-title">Start Learning</div>
+                <div class="step-desc">Your child begins their personalised coding journey with expert guidance every step of the way.</div>
+            </div>
+        </div>
+
+        <div class="locations-section">
+            <h4><i class="bi bi-geo-alt-fill" style="color:var(--orange)"></i> Serving</h4>
+            <div class="location-grid">
+                <div class="location-chip"><i class="bi bi-pin-map-fill"></i> Rouse Hill</div>
+                <div class="location-chip"><i class="bi bi-pin-map-fill"></i> Castle Hill</div>
+                <div class="location-chip"><i class="bi bi-pin-map-fill"></i> Kellyville</div>
+                <div class="location-chip"><i class="bi bi-pin-map-fill"></i> NW Sydney</div>
+            </div>
+        </div>
+
+        <div class="safe-badge">
+            <i class="bi bi-shield-check"></i>
+            <p><strong>NSW Child Safe</strong><br>Full compliance with NSW child safety standards. Parents can trust us with their children's education.</p>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
