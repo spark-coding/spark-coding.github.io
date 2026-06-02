@@ -243,7 +243,16 @@ html(lang='en')
                     .col-lg-8.text-center
                         h2.mt-0 Join Our Free Trial Session
                         hr.divider
-                        p.text-muted.mb-5 Experience our expert coding tuition firsthand! Fill out the form below and we'll contact you to arrange a FREE trial session for your child. No commitment required.
+                        p.text-muted.mb-4 Experience our expert coding tuition firsthand! Fill out the form below and we'll contact you to arrange a FREE trial session for your child. No commitment required.
+                        .call-cta.mb-3
+                            p.mb-3.fw-bold Prefer to talk? Call or text us directly:
+                            a.btn.btn-primary.btn-lg.me-2.mb-2(href='tel:+61455666640')
+                                i.bi.bi-telephone-fill.me-2
+                                | Call 0455 666 640
+                            a.btn.btn-outline-primary.btn-lg.mb-2(href='sms:+61455666640')
+                                i.bi.bi-chat-dots-fill.me-2
+                                | Text us
+                        p.text-muted.small.mb-5 Or fill in the form below and we'll call you back.
                 .row.gx-4.gx-lg-5.justify-content-center
                     .col-lg-8.col-xl-6
                         // Success Message
@@ -270,6 +279,11 @@ html(lang='en')
                             .form-floating.mb-3
                                 input#email.form-control(type='email', name='Email', placeholder='name@example.com', required)
                                 label(for='email') Email Address *
+                            
+                            // Phone Number
+                            .form-floating.mb-3
+                                input#phone.form-control(type='tel', name='Phone', placeholder='04xx xxx xxx', required)
+                                label(for='phone') Mobile Number *
                             
                             // Child's School Year Level
                             .form-floating.mb-3
@@ -319,7 +333,10 @@ html(lang='en')
                 p.mb-4.fs-5 Book a FREE trial session today and see why Rouse Hill and Sydney families choose Spark Coding for their children's programming education. Serving Rouse Hill, Castle Hill, Kellyville, and surrounding northwest Sydney areas. No commitment required!
                 .row.gx-4.gx-lg-5.justify-content-center
                     .col-lg-8.text-center.mb-5.mb-lg-0
-                        a.btn.btn-light.btn-xl(href='#trial-form') Join Free Trial Now
+                        a.btn.btn-light.btn-xl.me-2.mb-2(href='#trial-form') Join Free Trial Now
+                        a.btn.btn-outline-light.btn-xl.mb-2(href='tel:+61455666640')
+                            i.bi.bi-telephone-fill.me-2
+                            | Call 0455 666 640
 
         // Footer
         footer.bg-light.py-5

@@ -36,6 +36,17 @@
         }
     }
     
+    .call-cta {
+        padding: 1.5rem;
+        border: 1px solid rgba($primary, 0.2);
+        border-radius: 0.5rem;
+        background-color: rgba($primary, 0.04);
+        
+        .btn i {
+            vertical-align: -0.05em;
+        }
+    }
+    
     #successMessage {
         padding: 2rem;
         margin-bottom: 2rem;
