@@ -47,6 +47,18 @@
         }
     }
     
+    .cal-embed-card {
+        padding: 0.5rem;
+        border-radius: 0.5rem;
+        background-color: #fff;
+        box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.08);
+        overflow: hidden;
+        
+        #cal-trial-embed {
+            min-height: 600px;
+        }
+    }
+    
     #successMessage {
         padding: 2rem;
         margin-bottom: 2rem;
