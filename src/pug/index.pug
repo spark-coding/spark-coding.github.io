@@ -166,7 +166,9 @@ html(lang='en')
         // Navigation
         nav#mainNav.navbar.navbar-expand-lg.navbar-light.fixed-top.py-3
             .container.px-4.px-lg-5
-                a.navbar-brand(href='#page-top') Spark Coding
+                a.navbar-brand.d-flex.align-items-center(href='#page-top')
+                    img.navbar-logo.me-2(src='assets/img/bimi-logo.svg', alt='Spark Coding logo')
+                    span Spark Coding
                 button.navbar-toggler.navbar-toggler-right(type='button', data-bs-toggle='collapse', data-bs-target='#navbarResponsive', aria-controls='navbarResponsive', aria-expanded='false', aria-label='Toggle navigation')
                     span.navbar-toggler-icon
                 #navbarResponsive.collapse.navbar-collapse
