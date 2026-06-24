@@ -11033,6 +11033,16 @@ header.masthead h1, header.masthead .h1 {
 #trial-form .call-cta .btn i {
   vertical-align: -0.05em;
 }
+#trial-form .cal-embed-card {
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  background-color: #fff;
+  box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+#trial-form .cal-embed-card #cal-trial-embed {
+  min-height: 600px;
+}
 #trial-form #successMessage {
   padding: 2rem;
   margin-bottom: 2rem;

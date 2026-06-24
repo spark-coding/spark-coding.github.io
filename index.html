@@ -230,15 +230,67 @@
                 </div>
             </div>
         </section>
-        <!-- Free Trial Form-->
+        <!-- Free Trial Booking-->
         <section class="page-section bg-light" id="trial-form">
             <div class="container px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-lg-8 text-center">
-                        <h2 class="mt-0">Join Our Free Trial Session</h2>
+                        <h2 class="mt-0">Book Your Free Trial Session</h2>
                         <hr class="divider" />
-                        <p class="text-muted mb-4">Experience our expert coding tuition firsthand! Fill out the form below and we'll contact you to arrange a FREE trial session for your child. No commitment required.</p>
-                        <div class="call-cta mb-3">
+                        <p class="text-muted mb-4">Experience our expert coding tuition firsthand! Pick a time below and we'll instantly confirm your child's FREE trial session. No commitment required.</p>
+                    </div>
+                </div>
+                <!-- Cal.com inline booking embed — parents pick an available time slot.-->
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-12 col-xl-10">
+                        <div class="cal-embed-card"><div id="cal-trial-embed" style="min-width: 320px; width: 100%; height: 100%; overflow: auto"></div></div>
+                        <script>
+                            (function (C, A, L) {
+                                let p = function (a, ar) {
+                                    a.q.push(ar);
+                                };
+                                let d = C.document;
+                                C.Cal =
+                                    C.Cal ||
+                                    function () {
+                                        let cal = C.Cal;
+                                        let ar = arguments;
+                                        if (!cal.loaded) {
+                                            cal.ns = {};
+                                            cal.q = cal.q || [];
+                                            d.head.appendChild(d.createElement('script')).src = A;
+                                            cal.loaded = true;
+                                        }
+                                        if (ar[0] === L) {
+                                            const api = function () {
+                                                p(api, arguments);
+                                            };
+                                            const namespace = ar[1];
+                                            api.q = api.q || [];
+                                            if (typeof namespace === 'string') {
+                                                cal.ns[namespace] = cal.ns[namespace] || api;
+                                                p(cal.ns[namespace], ar);
+                                                p(cal, ['initNamespace', namespace]);
+                                            } else p(cal, ar);
+                                            return;
+                                        }
+                                        p(cal, ar);
+                                    };
+                            })(window, 'https://app.cal.com/embed/embed.js', 'init');
+                            Cal('init', 'free-trial', { origin: 'https://cal.com' });
+                            Cal.ns['free-trial']('inline', {
+                                elementOrSelector: '#cal-trial-embed',
+                                config: { layout: 'month_view', phone: '+61' },
+                                calLink: 'sparkcoding/free-trial',
+                            });
+                            Cal.ns['free-trial']('ui', { theme: 'light', cssVarsPerTheme: { light: { 'cal-brand': '#f4623a' }, dark: { 'cal-brand': '#f4623a' } }, hideEventTypeDetails: false, layout: 'month_view' });
+                        </script>
+                    </div>
+                </div>
+                <!-- Prefer a real conversation first? Call/text CTA under the calendar.-->
+                <div class="row gx-4 gx-lg-5 justify-content-center mt-4">
+                    <div class="col-lg-8 text-center">
+                        <div class="call-cta">
                             <p class="mb-3 fw-bold">Prefer to talk? Call or text us directly:</p>
                             <a class="btn btn-primary btn-lg me-2 mb-2" href="tel:+61455666640">
                                 <i class="bi bi-telephone-fill me-2"></i>
@@ -249,83 +301,6 @@
                                 Text us
                             </a>
                         </div>
-                        <p class="text-muted small mb-5">Or fill in the form below and we'll call you back.</p>
-                    </div>
-                </div>
-                <div class="row gx-4 gx-lg-5 justify-content-center">
-                    <div class="col-lg-8 col-xl-6">
-                        <!-- Success Message-->
-                        <div class="alert alert-success text-center" id="successMessage" style="display: none">
-                            <i class="bi bi-check-circle fs-1 text-success mb-3"></i>
-                            <h4 class="alert-heading">Well done!</h4>
-                            <p class="mb-0">Thank you for your interest! We've received your free trial request and will call or text you shortly to arrange your child's session.</p>
-                        </div>
-                        <form id="trialForm" action="https://formsubmit.co/admin@sparkcoding.com.au" method="POST">
-                            <!-- Honeypot for spam protection-->
-                            <input type="text" name="_honeypot" style="display: none" />
-                            <!-- Disable captcha-->
-                            <input type="hidden" name="_captcha" value="false" />
-                            <!-- Redirect back to form with success parameter-->
-                            <input type="hidden" name="_next" value="https://sparkcoding.com.au/?success=true#trial-form" />
-                            <input type="hidden" name="_subject" value="New Free Trial Enquiry - Spark Coding" />
-                            <!-- Parent/Guardian Name-->
-                            <div class="form-floating mb-3">
-                                <input class="form-control" id="parentName" type="text" name="Parent/Guardian Name" placeholder="Enter parent/guardian name..." required />
-                                <label for="parentName">Parent/Guardian Name *</label>
-                            </div>
-                            <!-- Email Address-->
-                            <div class="form-floating mb-3">
-                                <input class="form-control" id="email" type="email" name="Email" placeholder="name@example.com" required />
-                                <label for="email">Email Address *</label>
-                            </div>
-                            <!-- Phone Number-->
-                            <div class="form-floating mb-3">
-                                <input class="form-control" id="phone" type="tel" name="Phone" placeholder="04xx xxx xxx" required />
-                                <label for="phone">Mobile Number *</label>
-                            </div>
-                            <!-- Child's School Year Level-->
-                            <div class="form-floating mb-3">
-                                <select class="form-control" id="yearLevel" name="School Year Level" required>
-                                    <option value="" selected disabled>Select year level...</option>
-                                    <option value="3-4">Year 3-4</option>
-                                    <option value="5-6">Year 5-6</option>
-                                    <option value="7-8">Year 7-8</option>
-                                    <option value="9-10">Year 9-10</option>
-                                    <option value="11-12">Year 11-12</option>
-                                </select>
-                                <label for="yearLevel">Child's School Year Level *</label>
-                            </div>
-                            <!-- Coding Experience Level-->
-                            <div class="form-floating mb-3">
-                                <select class="form-control" id="codingLevel" name="Coding Experience" required>
-                                    <option value="" selected disabled>Select experience level...</option>
-                                    <option value="Never coded">Never coded</option>
-                                    <option value="Scratch experience">Scratch experience</option>
-                                    <option value="Text-based coding">Text-based coding (Python, JavaScript, etc.)</option>
-                                    <option value="Advanced programmer">Advanced programmer</option>
-                                </select>
-                                <label for="codingLevel">Current Coding Experience *</label>
-                            </div>
-                            <!-- Learning Goal-->
-                            <div class="form-floating mb-3">
-                                <select class="form-control" id="goal" name="Learning Goal" required>
-                                    <option value="" selected disabled>Select primary goal...</option>
-                                    <option value="School enrichment">School enrichment</option>
-                                    <option value="Learn game development">Learn game development</option>
-                                    <option value="Build apps &amp; websites">Build apps & websites</option>
-                                    <option value="Robotics &amp; hardware">Robotics & hardware</option>
-                                    <option value="Career preparation">Career preparation</option>
-                                </select>
-                                <label for="goal">Primary Learning Goal *</label>
-                            </div>
-                            <!-- Additional Message-->
-                            <div class="form-floating mb-3">
-                                <textarea class="form-control" id="message" name="Additional Message" placeholder="Enter any additional information..." style="height: 8rem"></textarea>
-                                <label for="message">Additional Message (Optional)</label>
-                            </div>
-                            <!-- Submit Button-->
-                            <div class="d-grid"><button class="btn btn-primary btn-xl" type="submit">Request Free Trial</button></div>
-                        </form>
                     </div>
                 </div>
             </div>
