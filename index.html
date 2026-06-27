@@ -28,6 +28,19 @@
         <meta property="twitter:description" content="Premier coding tuition for kids aged 8+ in Rouse Hill &amp; Sydney. Expert-led Scratch, Python, Arduino &amp; robotics classes. Small groups, tailored learning. Free trial available!" />
         <meta property="twitter:image" content="https://sparkcoding.com.au/assets/img/og-image.png" />
         <title>Kids Coding Classes Rouse Hill & Sydney | Programming Tuition & Robotics | Spark Coding</title>
+        <!-- Google tag (gtag.js) — Google Ads conversion tracking-->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18276568696"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+            gtag('js', new Date());
+            gtag('config', 'AW-18276568696');
+            function sparkReportCall() {
+                gtag('event', 'conversion', { send_to: 'AW-18276568696/4U2ICK3FxsYcEPic-YpE', value: 1.0, currency: 'AUD' });
+            }
+        </script>
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Bootstrap Icons-->
@@ -287,6 +300,15 @@
                                 calLink: 'sparkcoding/free-trial',
                             });
                             Cal.ns['free-trial']('ui', { theme: 'light', cssVarsPerTheme: { light: { 'cal-brand': '#f4623a' }, dark: { 'cal-brand': '#f4623a' } }, hideEventTypeDetails: false, layout: 'month_view' });
+                            // Google Ads conversion — fire when a free-trial booking completes
+                            Cal.ns['free-trial']('on', {
+                                action: 'bookingSuccessful',
+                                callback: function () {
+                                    if (typeof gtag === 'function') {
+                                        gtag('event', 'conversion', { send_to: 'AW-18276568696/yPwvCOfTsMYcEPic-YpE' });
+                                    }
+                                },
+                            });
                         </script>
                     </div>
                 </div>
@@ -295,11 +317,11 @@
                     <div class="col-lg-8 text-center">
                         <div class="call-cta">
                             <p class="mb-3 fw-bold">Prefer to talk? Call or text us directly:</p>
-                            <a class="btn btn-primary btn-lg me-2 mb-2" href="tel:+61455666640">
+                            <a class="btn btn-primary btn-lg me-2 mb-2" href="tel:+61455666640" onclick="sparkReportCall()">
                                 <i class="bi bi-telephone-fill me-2"></i>
                                 Call 0455 666 640
                             </a>
-                            <a class="btn btn-outline-primary btn-lg mb-2" href="sms:+61455666640">
+                            <a class="btn btn-outline-primary btn-lg mb-2" href="sms:+61455666640" onclick="sparkReportCall()">
                                 <i class="bi bi-chat-dots-fill me-2"></i>
                                 Text us
                             </a>
@@ -316,7 +338,7 @@
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-lg-8 text-center mb-5 mb-lg-0">
                         <a class="btn btn-light btn-xl me-2 mb-2" href="#trial-form">Join Free Trial Now</a>
-                        <a class="btn btn-outline-light btn-xl mb-2" href="tel:+61455666640">
+                        <a class="btn btn-outline-light btn-xl mb-2" href="tel:+61455666640" onclick="sparkReportCall()">
                             <i class="bi bi-telephone-fill me-2"></i>
                             Call 0455 666 640
                         </a>
