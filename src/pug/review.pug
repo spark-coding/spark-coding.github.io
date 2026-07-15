@@ -1,0 +1,18 @@
+//- Standalone redirect: sparkcoding.com.au/review -> Google review page.
+//- Kept minimal on purpose (no site chrome) so the hop is instant.
+doctype html
+html(lang='en')
+    head
+        meta(charset='utf-8')
+        meta(name='viewport' content='width=device-width, initial-scale=1')
+        meta(name='robots' content='noindex')
+        - var reviewUrl = 'https://search.google.com/local/writereview?placeid=ChIJIXwA7ZSfEmsRltijfHOHGMU'
+        meta(http-equiv='refresh' content='0; url=' + reviewUrl)
+        link(rel='canonical' href=reviewUrl)
+        title Leave Spark Coding a review
+        script.
+            window.location.replace('https://search.google.com/local/writereview?placeid=ChIJIXwA7ZSfEmsRltijfHOHGMU');
+    body(style='font-family: sans-serif; text-align: center; margin-top: 3rem;')
+        p Taking you to Google to leave a review&hellip;
+        p
+            a(href=reviewUrl) Tap here if you're not redirected.
