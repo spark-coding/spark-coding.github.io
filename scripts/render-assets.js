@@ -8,4 +8,10 @@ module.exports = function renderAssets() {
     const destPath = upath.resolve(upath.dirname(__filename), '../dist/.');
     
     sh.cp('-R', sourcePath, destPath)
+
+    // Files served from the site root (e.g. /guide.pdf) live in src/static.
+    const staticPath = upath.resolve(upath.dirname(__filename), '../src/static');
+    if (fs.existsSync(staticPath)) {
+        sh.cp('-R', `${staticPath}/*`, destPath);
+    }
 };
