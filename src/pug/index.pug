@@ -5,7 +5,7 @@ html(lang='en')
 
         meta(charset='utf-8')
         meta(name='viewport', content='width=device-width, initial-scale=1, shrink-to-fit=no')
-        meta(name='description', content='Premier coding tuition for kids aged 8+ in Rouse Hill & Sydney. Expert-led Scratch, Python, Arduino & robotics classes. Small groups, tailored learning. NSW Active & Creative Kids vouchers accepted. Free trial available!')
+        meta(name='description', content='Premier coding tuition for kids aged 8+ in Rouse Hill & Sydney. Expert-led Scratch, Python, Arduino & robotics classes. Small groups, tailored learning. NSW Active & Creative Kids vouchers accepted. Book a $20 trial, credited to your first term!')
         meta(name='author', content='Spark Coding')
         meta(name='keywords', content='coding classes kids Rouse Hill, programming tuition children Sydney, robotics classes Rouse Hill, Scratch programming kids Sydney, Arduino classes Rouse Hill, coding bootcamp kids Sydney, STEM education Rouse Hill, after school coding Sydney, holiday coding camps Rouse Hill, coding tutors Sydney, kids programming Rouse Hill, coding classes northwest Sydney')
         meta(name='robots', content='index, follow')
@@ -18,7 +18,7 @@ html(lang='en')
         meta(property='og:type', content='website')
         meta(property='og:url', content='https://sparkcoding.com.au/')
         meta(property='og:title', content='Kids Coding Classes Rouse Hill & Sydney | Programming Tuition & Robotics | Spark Coding')
-        meta(property='og:description', content='Premier coding tuition for kids aged 8+ in Rouse Hill & Sydney. Expert-led Scratch, Python, Arduino & robotics classes. Small groups, tailored learning. Free trial available!')
+        meta(property='og:description', content='Premier coding tuition for kids aged 8+ in Rouse Hill & Sydney. Expert-led Scratch, Python, Arduino & robotics classes. Small groups, tailored learning. Book a $20 trial, credited to your first term!')
         meta(property='og:image', content='https://sparkcoding.com.au/assets/img/og-image.png')
         meta(property='og:locale', content='en_AU')
         meta(property='business:contact_data:locality', content='Sydney')
@@ -29,7 +29,7 @@ html(lang='en')
         meta(property='twitter:card', content='summary_large_image')
         meta(property='twitter:url', content='https://sparkcoding.com.au/')
         meta(property='twitter:title', content='Kids Coding Classes Rouse Hill & Sydney | Programming Tuition & Robotics | Spark Coding')
-        meta(property='twitter:description', content='Premier coding tuition for kids aged 8+ in Rouse Hill & Sydney. Expert-led Scratch, Python, Arduino & robotics classes. Small groups, tailored learning. Free trial available!')
+        meta(property='twitter:description', content='Premier coding tuition for kids aged 8+ in Rouse Hill & Sydney. Expert-led Scratch, Python, Arduino & robotics classes. Small groups, tailored learning. Book a $20 trial, credited to your first term!')
         meta(property='twitter:image', content='https://sparkcoding.com.au/assets/img/og-image.png')
 
         title Kids Coding Classes Rouse Hill & Sydney | Programming Tuition & Robotics | Spark Coding
@@ -119,9 +119,9 @@ html(lang='en')
                 },
                 "offers": {
                     "@type": "Offer",
-                    "name": "Free Trial Session",
-                    "description": "Free trial coding session for new students",
-                    "price": "0",
+                    "name": "Trial Session",
+                    "description": "Trial coding session for new students; $20 deposit credited to your first term on enrolment.",
+                    "price": "20",
                     "priceCurrency": "AUD"
                 },
                 "sameAs": [
@@ -165,8 +165,8 @@ html(lang='en')
                 },
                 "offers": {
                     "@type": "Offer",
-                    "name": "Free Trial Session",
-                    "price": "0",
+                    "name": "Trial Session",
+                    "price": "20",
                     "priceCurrency": "AUD",
                     "availability": "https://schema.org/InStock"
                 }
@@ -189,7 +189,7 @@ html(lang='en')
                         li.nav-item
                             a.nav-link(href='#services') Services
                         li.nav-item
-                            a.nav-link(href='#trial-form') Free Trial
+                            a.nav-link(href='#trial-form') Trial
                         //- li.nav-item
                         //-     a.nav-link(href='#portfolio') Portfolio
                         li.nav-item
@@ -205,7 +205,7 @@ html(lang='en')
                     .col-lg-8.align-self-baseline
                         p.text-white-75.mb-5
                             | Give your child 21st-century skills with our expert coding tuition in Rouse Hill and surrounding Sydney areas. We teach Scratch, Python, Arduino and robotics to kids aged 8+, with small classes and personalised learning from experienced tech professionals.
-                        a.btn.btn-primary.btn-xl(href='#trial-form') Book Free Trial
+                        a.btn.btn-primary.btn-xl(href='#trial-form') Book a Trial
                         p.text-white-75.mt-4.mb-0.small
                             i.bi.bi-patch-check-fill.me-2
                             | Active &amp; Creative Kids voucher provider
@@ -252,14 +252,15 @@ html(lang='en')
                             h3.h4.mb-2 Safe Learning Environment
                             p.text-muted.mb-0 Full compliance with NSW child safety standards ensures parents can trust us with their children's coding education and development.
 
-        // Free Trial Booking
+        // Trial Booking
         section#trial-form.page-section.bg-light
             .container.px-4.px-lg-5
                 .row.gx-4.gx-lg-5.justify-content-center
                     .col-lg-8.text-center
-                        h2.mt-0 Book Your Free Trial Session
+                        h2.mt-0 Book Your Trial Session
                         hr.divider
-                        p.text-muted.mb-4 Experience our expert coding tuition firsthand! Pick a time below and we'll instantly confirm your child's FREE trial session. No commitment required.
+                        p.text-muted.mb-3 Experience our expert coding tuition firsthand! Pick a time below to book your child's trial session. A $20 deposit secures the spot and is credited to your first term when you enrol.
+                        p.text-muted.small.mb-4 Cancel at least 2 days ahead for a full refund. If something last-minute comes up (like illness), you can reschedule once at no extra cost.
                 // Cal.com inline booking embed — parents pick an available time slot.
                 .row.gx-4.gx-lg-5.justify-content-center
                     .col-12.col-xl-10
@@ -267,15 +268,15 @@ html(lang='en')
                             #cal-trial-embed(style='min-width:320px;width:100%;height:100%;overflow:auto')
                         script.
                             (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if (typeof namespace === "string") { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]); } else p(cal, ar); return; } p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
-                            Cal("init", "free-trial", { origin: "https://cal.com" });
-                            Cal.ns["free-trial"]("inline", {
+                            Cal("init", "trial", { origin: "https://cal.com" });
+                            Cal.ns["trial"]("inline", {
                                 elementOrSelector: "#cal-trial-embed",
                                 config: { layout: "month_view" },
-                                calLink: "sparkcoding/free-trial"
+                                calLink: "sparkcoding/trial"
                             });
-                            Cal.ns["free-trial"]("ui", { theme: "light", cssVarsPerTheme: { light: { "cal-brand": "#f4623a" }, dark: { "cal-brand": "#f4623a" } }, hideEventTypeDetails: false, layout: "month_view" });
-                            // Google Ads conversion — fire when a free-trial booking completes
-                            Cal.ns["free-trial"]("on", {
+                            Cal.ns["trial"]("ui", { theme: "light", cssVarsPerTheme: { light: { "cal-brand": "#f4623a" }, dark: { "cal-brand": "#f4623a" } }, hideEventTypeDetails: false, layout: "month_view" });
+                            // Google Ads conversion — fire when a trial booking completes
+                            Cal.ns["trial"]("on", {
                                 action: "bookingSuccessful",
                                 callback: function () {
                                     if (typeof gtag === "function") {
@@ -299,10 +300,10 @@ html(lang='en')
         section#contact.page-section.bg-dark.text-white
             .container.px-4.px-lg-5.text-center
                 h2.mb-4 Ready to Start Your Child's Coding Journey in Rouse Hill?
-                p.mb-4.fs-5 Book a FREE trial session today and see why Rouse Hill and Sydney families choose Spark Coding for their children's programming education. Serving Rouse Hill, Castle Hill, Kellyville, and surrounding northwest Sydney areas. No commitment required!
+                p.mb-4.fs-5 Book a trial session today and see why Rouse Hill and Sydney families choose Spark Coding for their children's programming education. Serving Rouse Hill, Castle Hill, Kellyville, and surrounding northwest Sydney areas. A $20 deposit secures your spot — credited to your first term when you enrol.
                 .row.gx-4.gx-lg-5.justify-content-center
                     .col-lg-8.text-center.mb-5.mb-lg-0
-                        a.btn.btn-light.btn-xl.me-2.mb-2(href='#trial-form') Join Free Trial Now
+                        a.btn.btn-light.btn-xl.me-2.mb-2(href='#trial-form') Book a Trial Now
                         a.btn.btn-outline-light.btn-xl.mb-2(href='tel:+61455666640', onclick='sparkReportCall()')
                             i.bi.bi-telephone-fill.me-2
                             | Call 0455 666 640
