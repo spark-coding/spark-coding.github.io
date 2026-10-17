@@ -1,0 +1,208 @@
+// 
+// Content sections (builds, lessons, term, reviews, fees, FAQ, guide)
+// 
+
+$card-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.06);
+
+.build-card,
+.lesson-step,
+.trial-step,
+.term-card,
+.fee-card,
+.review-card,
+.guide-note {
+    padding: 1.75rem;
+    border-radius: 0.75rem;
+    background-color: $white;
+    box-shadow: $card-shadow;
+}
+
+.build-card {
+    .build-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 3.25rem;
+        height: 3.25rem;
+        margin-bottom: 1rem;
+        border-radius: 0.75rem;
+        background-color: rgba($primary, 0.1);
+        color: $primary;
+        font-size: 1.6rem;
+    }
+
+    .build-platform {
+        display: inline-block;
+        background-color: rgba($primary, 0.12);
+        color: darken($primary, 15%);
+        font-weight: 600;
+    }
+}
+
+.lesson-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    margin-bottom: 0.75rem;
+    border-radius: 50%;
+    background-color: $primary;
+    color: $white;
+    font-family: $font-family-sans-serif;
+    font-weight: $font-weight-bold;
+}
+
+.term-card {
+    border-top: 4px solid $primary;
+
+    .term-stage {
+        margin-bottom: 0.25rem;
+        color: $gray-600;
+        font-size: 0.8rem;
+        font-weight: $font-weight-bold;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+
+    ul {
+        padding-left: 1.1rem;
+    }
+}
+
+.milestones {
+    padding: 2rem;
+    border-radius: 0.75rem;
+    background-color: rgba($primary, 0.06);
+
+    .milestone-when {
+        margin-bottom: 0.5rem;
+        color: $primary;
+        font-family: $font-family-sans-serif;
+        font-weight: $font-weight-bold;
+    }
+}
+
+.review-card {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+
+    .review-stars {
+        color: #fbbc04;
+    }
+
+    blockquote {
+        flex-grow: 1;
+        font-style: italic;
+    }
+}
+
+.fee-card {
+    text-align: center;
+
+    h3 {
+        margin-top: 0.75rem;
+    }
+}
+
+#faq {
+    .accordion-button {
+        font-family: $font-family-sans-serif;
+        font-weight: $font-weight-bold;
+
+        &:not(.collapsed) {
+            color: darken($primary, 10%);
+            background-color: rgba($primary, 0.08);
+        }
+
+        &:focus {
+            box-shadow: 0 0 0 0.25rem rgba($primary, 0.25);
+        }
+    }
+}
+
+// Sticky mobile CTA
+.sticky-cta {
+    position: fixed;
+    left: 1rem;
+    right: 1rem;
+    bottom: 1rem;
+    z-index: $zindex-fixed;
+    padding: 0.85rem 1rem;
+    border-radius: 2rem;
+    box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.25);
+    font-weight: $font-weight-bold;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+
+    &.is-hidden {
+        opacity: 0;
+        transform: translateY(150%);
+        pointer-events: none;
+    }
+}
+
+@include media-breakpoint-down(lg) {
+    footer {
+        padding-bottom: 6rem !important;
+    }
+}
+
+// Guide page
+header.masthead.masthead-short {
+    height: auto;
+    min-height: 0;
+    padding-top: 10rem;
+    padding-bottom: 5rem;
+}
+
+.guide {
+    h2 {
+        margin-top: 0;
+    }
+
+    .divider.ms-0 {
+        margin-left: 0;
+    }
+
+    .guide-glance {
+        padding: 1.75rem;
+        border-left: 4px solid $primary;
+        border-radius: 0.5rem;
+        background-color: rgba($primary, 0.06);
+    }
+
+    .guide-stage {
+        display: flex;
+        gap: 1.25rem;
+        margin-bottom: 2rem;
+
+        .guide-stage-num {
+            flex: 0 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 3rem;
+            height: 3rem;
+            border-radius: 50%;
+            background-color: $primary;
+            color: $white;
+            font-family: $font-family-sans-serif;
+            font-size: 1.25rem;
+            font-weight: $font-weight-bold;
+        }
+    }
+
+    .guide-door,
+    .guide-example {
+        margin-bottom: 1.5rem;
+        padding-bottom: 1.5rem;
+        border-bottom: 1px solid $gray-200;
+    }
+
+    .guide-cta {
+        padding: 2.5rem 2rem;
+        border-radius: 0.75rem;
+        background-color: $gray-100;
+    }
+}

@@ -1,0 +1,32 @@
+//- Expects `base` to be set by the including page: '' on the homepage, '/' elsewhere.
+
+// Sticky mobile booking button (hidden on large screens and while the booking section is on screen)
+a#stickyCta.sticky-cta.btn.btn-primary.d-lg-none(href=base + '#trial-form') Book a $20 trial
+
+// Footer
+footer.bg-light.py-5
+    .container.px-4.px-lg-5
+        .small.text-center.text-muted
+            span.d-inline-block.mb-3
+                i.bi.bi-patch-check-fill.me-2
+                | Active &amp; Creative Kids voucher provider
+            br
+            | 5 Glen Abbey St, Rouse Hill NSW 2155
+            br
+            | Phone: 
+            a.text-muted(href='tel:+61455666640', onclick='sparkReportCall()') 0455 666 640
+            |  · Email: 
+            a.text-muted(href='mailto:admin@sparkcoding.com.au') admin@sparkcoding.com.au
+            br
+            | ABN: 828 472 009 02
+            br
+            | Copyright &copy; 2026 - Spark Coding
+
+// Bootstrap core JS
+script(src='https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js')
+
+// SimpleLightbox plugin JS
+script(src='https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.js')
+
+// Core theme JS
+script(src='/js/scripts.js')

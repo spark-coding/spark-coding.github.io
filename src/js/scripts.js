@@ -51,4 +51,22 @@ window.addEventListener('DOMContentLoaded', event => {
         elements: '#portfolio a.portfolio-box'
     });
 
+    // Hide the sticky mobile booking button while the hero or booking section is on screen
+    const stickyCta = document.getElementById('stickyCta');
+    const ctaZones = [document.querySelector('header.masthead'), document.getElementById('trial-form')].filter(Boolean);
+    if (stickyCta && ctaZones.length && 'IntersectionObserver' in window) {
+        const visible = new Set();
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    visible.add(entry.target);
+                } else {
+                    visible.delete(entry.target);
+                }
+            });
+            stickyCta.classList.toggle('is-hidden', visible.size > 0);
+        }, { threshold: 0.05 });
+        ctaZones.forEach(zone => observer.observe(zone));
+    }
+
 });

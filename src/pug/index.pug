@@ -1,65 +1,83 @@
 doctype html
 html(lang='en')
 
+    - var base = ''
+
+    mixin buildCard(icon, title, platform, text)
+        .col-md-6.col-lg-4
+            .build-card.h-100
+                .build-icon
+                    i.bi(class='bi-' + icon)
+                h3.h5.mb-1= title
+                span.badge.build-platform.mb-2= platform
+                p.text-muted.mb-0= text
+
+    mixin termCard(stage, who, tool, items, build)
+        .col-md-6.col-xl-3
+            .term-card.h-100
+                .term-stage= stage
+                h3.h5.mb-1= who
+                p.small.text-primary.fw-bold.mb-3= tool
+                p.small.text-muted.mb-2 By the end of the term they can:
+                ul.small.mb-3
+                    each item in items
+                        li= item
+                p.small.mb-0
+                    strong Builds like: 
+                    | #{build}
+
+    mixin review(name, text)
+        .col-lg-4
+            figure.review-card.h-100
+                .review-stars.mb-2(aria-label='5 out of 5 stars')
+                    i.bi.bi-star-fill
+                    i.bi.bi-star-fill
+                    i.bi.bi-star-fill
+                    i.bi.bi-star-fill
+                    i.bi.bi-star-fill
+                blockquote.mb-3
+                    p.mb-0= text
+                figcaption.small.text-muted
+                    | #{name} · 
+                    i.bi.bi-google.me-1
+                    | Google review
+
+    mixin faq(id, question)
+        .accordion-item
+            h3.accordion-header(id='faq-h-' + id)
+                button.accordion-button.collapsed(type='button', data-bs-toggle='collapse', data-bs-target='#faq-' + id, aria-expanded='false', aria-controls='faq-' + id)= question
+            .accordion-collapse.collapse(id='faq-' + id, aria-labelledby='faq-h-' + id, data-bs-parent='#faqAccordion')
+                .accordion-body
+                    block
+
     head
 
-        meta(charset='utf-8')
-        meta(name='viewport', content='width=device-width, initial-scale=1, shrink-to-fit=no')
-        meta(name='description', content='Premier coding tuition for kids aged 8+ in Rouse Hill & Sydney. Expert-led Scratch, Python, Arduino & robotics classes. Small groups, tailored learning. NSW Active & Creative Kids vouchers accepted. Book a $20 trial, credited to your first term!')
-        meta(name='author', content='Spark Coding')
-        meta(name='keywords', content='coding classes kids Rouse Hill, programming tuition children Sydney, robotics classes Rouse Hill, Scratch programming kids Sydney, Arduino classes Rouse Hill, coding bootcamp kids Sydney, STEM education Rouse Hill, after school coding Sydney, holiday coding camps Rouse Hill, coding tutors Sydney, kids programming Rouse Hill, coding classes northwest Sydney')
-        meta(name='robots', content='index, follow')
+        include includes/head.pug
+
+        meta(name='description', content='Small-group coding classes for kids 8+ in Rouse Hill. Kids build real games in Scratch, MakeCode Arcade and Python, max 3 per class, taught by a software engineer with 15+ years experience. $59 per lesson. Book a $20 trial, credited to your first term.')
+        meta(name='keywords', content='coding classes kids Rouse Hill, programming tuition children Sydney, Scratch programming kids Sydney, Python classes for kids Rouse Hill, game making for kids, STEM education Rouse Hill, after school coding Sydney, coding tutors Sydney, kids programming Rouse Hill, coding classes northwest Sydney, coding classes Kellyville, coding classes Castle Hill')
         meta(name='geo.region', content='AU-NSW')
-        meta(name='geo.placename', content='Sydney')
-        meta(name='geo.position', content='-33.8688;151.2093')
-        meta(name='ICBM', content='-33.8688, 151.2093')
+        meta(name='geo.placename', content='Rouse Hill')
 
         // Open Graph / Facebook
         meta(property='og:type', content='website')
         meta(property='og:url', content='https://sparkcoding.com.au/')
-        meta(property='og:title', content='Kids Coding Classes Rouse Hill & Sydney | Programming Tuition & Robotics | Spark Coding')
-        meta(property='og:description', content='Premier coding tuition for kids aged 8+ in Rouse Hill & Sydney. Expert-led Scratch, Python, Arduino & robotics classes. Small groups, tailored learning. Book a $20 trial, credited to your first term!')
+        meta(property='og:title', content='Kids Coding Classes Rouse Hill | Scratch, Python & Game Making | Spark Coding')
+        meta(property='og:description', content='Small-group coding classes for kids 8+ in Rouse Hill. Kids build real games in Scratch, MakeCode Arcade and Python. Max 3 per class. Book a $20 trial, credited to your first term.')
         meta(property='og:image', content='https://sparkcoding.com.au/assets/img/og-image.png')
         meta(property='og:locale', content='en_AU')
-        meta(property='business:contact_data:locality', content='Sydney')
+        meta(property='business:contact_data:locality', content='Rouse Hill')
         meta(property='business:contact_data:region', content='NSW')
         meta(property='business:contact_data:country_name', content='Australia')
 
         // Twitter
         meta(property='twitter:card', content='summary_large_image')
         meta(property='twitter:url', content='https://sparkcoding.com.au/')
-        meta(property='twitter:title', content='Kids Coding Classes Rouse Hill & Sydney | Programming Tuition & Robotics | Spark Coding')
-        meta(property='twitter:description', content='Premier coding tuition for kids aged 8+ in Rouse Hill & Sydney. Expert-led Scratch, Python, Arduino & robotics classes. Small groups, tailored learning. Book a $20 trial, credited to your first term!')
+        meta(property='twitter:title', content='Kids Coding Classes Rouse Hill | Scratch, Python & Game Making | Spark Coding')
+        meta(property='twitter:description', content='Small-group coding classes for kids 8+ in Rouse Hill. Kids build real games in Scratch, MakeCode Arcade and Python. Max 3 per class. Book a $20 trial, credited to your first term.')
         meta(property='twitter:image', content='https://sparkcoding.com.au/assets/img/og-image.png')
 
-        title Kids Coding Classes Rouse Hill & Sydney | Programming Tuition & Robotics | Spark Coding
-
-        // Google tag (gtag.js) — Google Ads conversion tracking
-        script(async, src='https://www.googletagmanager.com/gtag/js?id=AW-18276568696')
-        script.
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'AW-18276568696');
-            function sparkReportCall(){
-                gtag('event', 'conversion', { 'send_to': 'AW-18276568696/4U2ICK3FxsYcEPic-YpE', 'value': 1.0, 'currency': 'AUD' });
-            }
-
-        // Favicon
-        link(rel='icon', type='image/x-icon', href='assets/favicon.ico')
-
-        // Bootstrap Icons
-        link(href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css', rel='stylesheet')
-
-        // Google fonts
-        link(href='https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700', rel='stylesheet')
-        link(href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic', rel='stylesheet', type='text/css')
-
-        // SimpleLightbox plugin CSS
-        link(href='https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.css', rel='stylesheet')
-
-        // Core theme CSS (includes Bootstrap)
-        link(href='css/styles.css', rel='stylesheet')
+        title Kids Coding Classes Rouse Hill | Scratch, Python & Game Making | Spark Coding
 
         // Structured Data / Schema Markup
         script(type='application/ld+json').
@@ -68,62 +86,47 @@ html(lang='en')
                 "@type": "EducationalOrganization",
                 "name": "Spark Coding",
                 "alternateName": "Spark Coding Sydney",
-                "description": "Premier coding tuition for kids aged 8+ in Rouse Hill & Sydney. Expert-led programming classes in Scratch, Python, Arduino & robotics.",
+                "description": "Small-group coding classes for kids aged 8+ in Rouse Hill, Sydney. Kids build real games and programs in Scratch, MakeCode Arcade and Python.",
                 "url": "https://sparkcoding.com.au",
                 "email": "admin@sparkcoding.com.au",
+                "telephone": "+61455666640",
                 "address": {
                     "@type": "PostalAddress",
-                    "streetAddress": "Rouse Hill",
-                    "addressLocality": "Sydney",
+                    "streetAddress": "5 Glen Abbey St",
+                    "addressLocality": "Rouse Hill",
                     "addressRegion": "NSW",
+                    "postalCode": "2155",
                     "addressCountry": "AU"
                 },
-                "geo": {
-                    "@type": "GeoCoordinates",
-                    "latitude": -33.8688,
-                    "longitude": 151.2093
-                },
                 "areaServed": [
-                    {
-                        "@type": "City",
-                        "name": "Rouse Hill",
-                        "addressRegion": "NSW",
-                        "addressCountry": "AU"
-                    },
-                    {
-                        "@type": "City", 
-                        "name": "Castle Hill",
-                        "addressRegion": "NSW",
-                        "addressCountry": "AU"
-                    },
-                    {
-                        "@type": "City",
-                        "name": "Kellyville",
-                        "addressRegion": "NSW", 
-                        "addressCountry": "AU"
-                    },
-                    {
-                        "@type": "City",
-                        "name": "Sydney",
-                        "addressRegion": "NSW",
-                        "addressCountry": "AU"
-                    }
+                    { "@type": "City", "name": "Rouse Hill", "addressRegion": "NSW", "addressCountry": "AU" },
+                    { "@type": "City", "name": "Castle Hill", "addressRegion": "NSW", "addressCountry": "AU" },
+                    { "@type": "City", "name": "Kellyville", "addressRegion": "NSW", "addressCountry": "AU" },
+                    { "@type": "City", "name": "Sydney", "addressRegion": "NSW", "addressCountry": "AU" }
                 ],
-                "serviceType": ["Coding Classes", "Programming Tuition", "Robotics Classes", "STEM Education"],
-                "educationalCredentialAwarded": "Coding Skills Certificate",
+                "serviceType": ["Coding Classes", "Programming Tuition", "STEM Education"],
                 "audience": {
                     "@type": "EducationalAudience",
                     "audienceType": "Children",
                     "suggestedMinAge": 8,
                     "suggestedMaxAge": 18
                 },
-                "offers": {
-                    "@type": "Offer",
-                    "name": "Trial Session",
-                    "description": "Trial coding session for new students; $20 deposit credited to your first term on enrolment.",
-                    "price": "20",
-                    "priceCurrency": "AUD"
-                },
+                "offers": [
+                    {
+                        "@type": "Offer",
+                        "name": "Trial Session",
+                        "description": "45-minute trial and placement session; $20 deposit credited to your first term on enrolment.",
+                        "price": "20",
+                        "priceCurrency": "AUD"
+                    },
+                    {
+                        "@type": "Offer",
+                        "name": "Small-group coding lesson (max 3 students)",
+                        "description": "45-minute lesson, billed per term.",
+                        "price": "59",
+                        "priceCurrency": "AUD"
+                    }
+                ],
                 "sameAs": [
                     "https://sparkcoding.com.au"
                 ]
@@ -133,36 +136,26 @@ html(lang='en')
             {
                 "@context": "https://schema.org",
                 "@type": "Course",
-                "name": "Kids Coding Classes Rouse Hill & Sydney",
-                "description": "Comprehensive coding and programming classes for children aged 8+ in Rouse Hill and Sydney, covering Scratch, Python, Arduino, and robotics.",
+                "name": "Kids Coding Classes Rouse Hill",
+                "description": "Small-group coding classes for children aged 8+ in Rouse Hill, covering Scratch, MakeCode Arcade and Python through game and project building.",
                 "provider": {
                     "@type": "EducationalOrganization",
                     "name": "Spark Coding",
                     "address": {
                         "@type": "PostalAddress",
-                        "streetAddress": "Rouse Hill",
-                        "addressLocality": "Sydney",
+                        "streetAddress": "5 Glen Abbey St",
+                        "addressLocality": "Rouse Hill",
                         "addressRegion": "NSW",
+                        "postalCode": "2155",
                         "addressCountry": "AU"
                     }
                 },
                 "courseMode": "In-person",
                 "educationalLevel": "Beginner to Advanced",
                 "typicalAgeRange": "8-18",
-                "teaches": ["Scratch Programming", "Python Programming", "Arduino", "Robotics", "Web Development", "Problem Solving", "Computational Thinking"],
+                "teaches": ["Scratch Programming", "MakeCode Arcade", "Python Programming", "Game Development", "Problem Solving", "Computational Thinking"],
                 "availableLanguage": "en",
                 "inLanguage": "en",
-                "locationCreated": {
-                    "@type": "Place",
-                    "name": "Rouse Hill, Sydney",
-                    "address": {
-                        "@type": "PostalAddress",
-                        "streetAddress": "Rouse Hill", 
-                        "addressLocality": "Sydney",
-                        "addressRegion": "NSW", 
-                        "addressCountry": "AU"
-                    }
-                },
                 "offers": {
                     "@type": "Offer",
                     "name": "Trial Session",
@@ -174,98 +167,230 @@ html(lang='en')
 
     body#page-top
 
-        // Navigation
-        nav#mainNav.navbar.navbar-expand-lg.navbar-light.fixed-top.py-3
-            .container.px-4.px-lg-5
-                a.navbar-brand.d-flex.align-items-center(href='#page-top')
-                    img.navbar-logo.me-2(src='assets/img/bimi-logo.svg', alt='Spark Coding logo', width='36', height='36')
-                    span Spark Coding
-                button.navbar-toggler.navbar-toggler-right(type='button', data-bs-toggle='collapse', data-bs-target='#navbarResponsive', aria-controls='navbarResponsive', aria-expanded='false', aria-label='Toggle navigation')
-                    span.navbar-toggler-icon
-                #navbarResponsive.collapse.navbar-collapse
-                    ul.navbar-nav.ms-auto.my-2.my-lg-0
-                        li.nav-item
-                            a.nav-link(href='#about') About
-                        li.nav-item
-                            a.nav-link(href='#services') Services
-                        li.nav-item
-                            a.nav-link(href='#trial-form') Trial
-                        //- li.nav-item
-                        //-     a.nav-link(href='#portfolio') Portfolio
-                        li.nav-item
-                            a.nav-link(href='#contact') Contact
+        include includes/nav.pug
 
         // Masthead
         header.masthead
             .container.px-4.px-lg-5.h-100
                 .row.gx-4.gx-lg-5.h-100.align-items-center.justify-content-center.text-center
-                    .col-lg-8.align-self-end
-                        h1.text-white.font-weight-bold Rouse Hill's Premier Kids Coding Classes - Serving Sydney's Northwest
+                    .col-lg-9.align-self-end
+                        p.text-white-75.text-uppercase.fw-bold.small.mb-3 Kids coding classes · Rouse Hill
+                        h1.text-white.font-weight-bold Your child builds real games, and learns to code properly doing it
                         hr.divider
                     .col-lg-8.align-self-baseline
                         p.text-white-75.mb-5
-                            | Give your child 21st-century skills with our expert coding tuition in Rouse Hill and surrounding Sydney areas. We teach Scratch, Python, Arduino and robotics to kids aged 8+, with small classes and personalised learning from experienced tech professionals.
-                        a.btn.btn-primary.btn-xl(href='#trial-form') Book a Trial
-                        p.text-white-75.mt-4.mb-0.small
+                            | Small-group classes for kids aged 8+ in Scratch, MakeCode Arcade and Python, taught by Alvin, a software engineer with 15+ years at Tencent and ASX 200 companies. Maximum 3 students per class.
+                        a.btn.btn-primary.btn-xl.me-sm-2.mb-3(href='#trial-form') Book a $20 Trial
+                        a.btn.btn-outline-light.btn-xl.mb-3(href='#builds') See What Kids Build
+                        p.text-white-75.mt-3.mb-0.small
                             i.bi.bi-patch-check-fill.me-2
                             | Active &amp; Creative Kids voucher provider
+                            span.mx-2 ·
+                            i.bi.bi-star-fill.me-1
+                            a.text-white-75(href='#reviews') Parent reviews on Google
 
-        // About
+        // What kids build
+        section#builds.page-section
+            .container.px-4.px-lg-5
+                .row.justify-content-center
+                    .col-lg-8.text-center
+                        h2.mt-0 What Your Child Will Build
+                        hr.divider
+                        p.text-muted.mb-5 Every lesson ends with something that works, and that they want to show you. Here are some of the projects our students make.
+                .row.g-4
+                    +buildCard('hammer', 'Whack-a-Mole', 'Scratch', 'Moles pop up at random and you click fast to score. Their first real game, built while learning about timing and randomness.')
+                    +buildCard('music-note-beamed', 'Tap Piano', 'Scratch', 'Click the keys and play a tune. Events, sounds and costumes, and plenty of proud demos at home.')
+                    +buildCard('controller', 'Space Shooter', 'MakeCode Arcade', 'A proper arcade shooter with lives and a score, which they can load onto a handheld micro:bit game console and play.')
+                    +buildCard('grid-3x3-gap', 'Word Guess (Wordle)', 'Python', 'Their own version of the word game everyone plays, written in real Python code.')
+                    +buildCard('key', 'Secret Codes', 'Python', 'Encrypt and crack secret messages with a Caesar cipher, and find out how computers turn letters into numbers.')
+                    +buildCard('trophy', 'Spark Arena', 'Python bots', 'Write a bot, then watch it battle classmates\' bots in Tron, Maze and Pond tournaments on the big screen.')
+
+        // What a lesson looks like
+        section#lessons.page-section.bg-light
+            .container.px-4.px-lg-5
+                .row.justify-content-center
+                    .col-lg-8.text-center
+                        h2.mt-0 What a Lesson Looks Like
+                        hr.divider
+                        p.text-muted.mb-5 A 45-minute lesson with a maximum of three students. At least half of every lesson is your child at the keyboard making something, not watching.
+                .row.g-4
+                    .col-md-6.col-lg-3
+                        .lesson-step.h-100
+                            .lesson-num 1
+                            h3.h5 One new idea
+                            p.text-muted.mb-0 Never two at once. The first exercise is so easy that every child gets it right. Confidence first.
+                    .col-md-6.col-lg-3
+                        .lesson-step.h-100
+                            .lesson-num 2
+                            h3.h5 Small steps up
+                            p.text-muted.mb-0 We add one small thing at a time, so kids can see themselves getting better as they go.
+                    .col-md-6.col-lg-3
+                        .lesson-step.h-100
+                            .lesson-num 3
+                            h3.h5 Make it yours
+                            p.text-muted.mb-0 The main event. Each child builds their own version, such as a game or a handy tool. This is where most of the lesson goes.
+                    .col-md-6.col-lg-3
+                        .lesson-step.h-100
+                            .lesson-num 4
+                            h3.h5 Stretch or practise
+                            p.text-muted.mb-0 Fast finishers get a harder challenge on the same idea. Others get another easy step. No one is rushed or held back.
+
+        // How much in a term
+        section#term.page-section
+            .container.px-4.px-lg-5
+                .row.justify-content-center
+                    .col-lg-8.text-center
+                        h2.mt-0 How Much Can They Learn in a Term?
+                        hr.divider
+                        p.text-muted.mb-5 A term is about 10 weekly lessons. Where your child starts depends on what they already know, not just their age. Older beginners don't restart from blocks. Here's what one term looks like at each stage.
+                .row.g-4
+                    +termCard('Stage 1', 'First code', 'Scratch · usually Year 3', ['Make things happen in order and on cue', 'Make characters talk to each other', 'Use randomness and if/else to make games unpredictable', 'Store and use items in a list'], 'Whack-a-Mole, Tap Piano, and a finished game for their portfolio.')
+                    +termCard('Stage 2', 'Blocks to real code', 'MakeCode Arcade · usually Years 3–4', ['Build arcade games with blocks', 'Flip to the Python view and edit real code', 'Use variables, true/false and functions', 'Ship a game to their portfolio'], 'Catch the Falling Items, Space Shooter, playable on a micro:bit console.')
+                    +termCard('Stage 3', 'Python', 'Python · usually Years 4–6', ['Write Python from a blank file without fear', 'Use variables, input and if/elif/else', 'Read an error message calmly and fix it', 'Start using loops and lists'], 'a trading card maker, a calculator and a quiz.')
+                    +termCard('Stage 4', 'Building skills', 'Python · usually Year 7+', ['Work with grids, records and files', 'Search and sort, and count the steps', 'Plan with pseudocode and test cases', 'Prepare for coding competitions (optional)'], 'Secret Codes, a leaderboard, and Spark Arena bots.')
+                .row.justify-content-center.mt-5
+                    .col-lg-10
+                        .milestones
+                            .row.g-4.text-center
+                                .col-md-4
+                                    .milestone-when After one term
+                                    p.mb-0 They'll show you a program they built themselves. You'll hear them ask, "What if I made it do this instead?"
+                                .col-md-4
+                                    .milestone-when After one year
+                                    p.mb-0 They'll fix their own bugs without asking, and have made something they're genuinely proud of.
+                                .col-md-4
+                                    .milestone-when After three years
+                                    p.mb-0 They'll read and write the same kind of code professional programmers use, and have at least one competition certificate.
+                        p.text-muted.text-center.small.mt-4.mb-0 We go deep, not fast: most children spend one to two years at each stage, practising each idea until it feels easy.
+                        p.text-center.mt-3.mb-0
+                            a.btn.btn-outline-primary(href='/guide')
+                                | Read the full parent guide
+                                i.bi.bi-arrow-right.ms-2
+
+        // Meet Alvin
         section#about.page-section.bg-primary
             .container.px-4.px-lg-5
                 .row.gx-4.gx-lg-5.justify-content-center
                     .col-lg-8.text-center
-                        h2.text-white.mt-0 Expert Coding Tutors in Rouse Hill & Sydney
+                        h2.text-white.mt-0 Meet Alvin, Your Child's Coding Teacher
                         hr.divider.divider-light
-                        p.text-white-75.mb-4
-                            | Our lead instructor brings 15+ years of tech industry experience from Tencent and ASX 200 companies to Rouse Hill families and the broader Sydney region. We've mentored engineers at all levels and now bring that expertise to young learners, making complex programming concepts accessible and fun for kids aged 8-18.
-                        a.btn.btn-light.btn-xl(href='#services') Explore Our Courses
+                        p.text-white-75.mb-3
+                            | Alvin has spent 15+ years building software at Tencent and ASX 200 companies, mentoring engineers at every level. Spark Coding brings that experience to kids in Rouse Hill and Sydney's northwest, with patient teaching that turns tricky ideas into things kids can build.
+                        p.text-white-75.mb-0
+                            i.bi.bi-shield-check.me-2
+                            | Fully compliant with NSW child safety standards.
 
-        // Services
-        section#services.page-section
+        // Reviews
+        section#reviews.page-section
             .container.px-4.px-lg-5
-                h2.text-center.mt-0 Our Coding Classes & Tuition Services in Rouse Hill & Sydney
-                hr.divider
-                .row.gx-4.gx-lg-5
-                    .col-lg-3.col-md-6.text-center
-                        .mt-5
-                            .mb-2
-                                i.bi-puzzle.fs-1.text-primary
-                            h3.h4.mb-2 Personalised Programming Courses
-                            p.text-muted.mb-0 Every Rouse Hill and Sydney student learns differently. Our coding tutors create customised learning paths in Scratch, Python, and web development to match your child's pace and interests.
-                    .col-lg-3.col-md-6.text-center
-                        .mt-5
-                            .mb-2
-                                i.bi-easel.fs-1.text-primary
-                            h3.h4.mb-2 Small Group Coding Classes
-                            p.text-muted.mb-0 Maximum 3 students per session ensures your child gets individual attention from our expert coding tutors. Perfect for building confidence in programming fundamentals.
-                    .col-lg-3.col-md-6.text-center
-                        .mt-5
-                            .mb-2
-                                i.bi-lightbulb.fs-1.text-primary
-                            h3.h4.mb-2 STEM & Problem-Solving Skills
-                            p.text-muted.mb-0 Beyond coding syntax, we teach computational thinking, robotics with Arduino, and real-world problem-solving skills that benefit all areas of learning.
-                    .col-lg-3.col-md-6.text-center
-                        .mt-5
-                            .mb-2
-                                i.bi-shield-check.fs-1.text-primary
-                            h3.h4.mb-2 Safe Learning Environment
-                            p.text-muted.mb-0 Full compliance with NSW child safety standards ensures parents can trust us with their children's coding education and development.
+                .row.justify-content-center
+                    .col-lg-8.text-center
+                        h2.mt-0 What Parents Say
+                        hr.divider
+                .row.g-4.mt-2
+                    +review('Shaojun W.', 'Highly recommend Spark Coding. Great teacher, clear explanations, and my child loves it. We\u2019ve seen real progress in logic and problem-solving.')
+                    +review('Pucheng X.', 'Very good teacher, professional and very patient. My kid love here so much.')
+                    +review('Leo W.', 'My son has really enjoyed learning Python with Alvin. He is a very passionate and dedicated teacher who knows how to guide students through challenging problems and, importantly, encourages them to think independently and find solutions themselves.')
+                p.text-center.mt-4.mb-0
+                    a.text-muted(href='https://www.google.com/maps/search/?api=1&query=Spark+Coding+Rouse+Hill&query_place_id=ChIJIXwA7ZSfEmsRltijfHOHGMU', target='_blank', rel='noopener')
+                        | Read all reviews on Google
+                        i.bi.bi-arrow-up-right.ms-1
+
+        // Fees & logistics
+        section#fees.page-section.bg-light
+            .container.px-4.px-lg-5
+                .row.justify-content-center
+                    .col-lg-8.text-center
+                        h2.mt-0 Fees &amp; Practical Details
+                        hr.divider
+                .row.g-4.mt-2.justify-content-center
+                    .col-md-6.col-lg-4
+                        .fee-card.h-100
+                            i.bi.bi-currency-dollar.fs-2.text-primary
+                            h3.h5 $59 per lesson
+                            p.text-muted.mb-0 45 minutes, maximum 3 students. Billed per term (about 10 lessons). Active &amp; Creative Kids vouchers accepted.
+                    .col-md-6.col-lg-4
+                        .fee-card.h-100
+                            i.bi.bi-calendar-check.fs-2.text-primary
+                            h3.h5 $20 trial, credited to term
+                            p.text-muted.mb-0 The $20 deposit comes off your first term's fees when you enrol. Cancel at least 2 days ahead for a full refund.
+                    .col-md-6.col-lg-4
+                        .fee-card.h-100
+                            i.bi.bi-geo-alt.fs-2.text-primary
+                            h3.h5 In person in Rouse Hill
+                            p.text-muted.mb-0
+                                a.text-muted(href='https://www.google.com/maps/search/?api=1&query=5+Glen+Abbey+St+Rouse+Hill+NSW+2155', target='_blank', rel='noopener') 5 Glen Abbey St, Rouse Hill
+                                br
+                                | Serving Rouse Hill, Kellyville, Castle Hill and the Hills district.
+                    .col-md-6.col-lg-4
+                        .fee-card.h-100
+                            i.bi.bi-clock.fs-2.text-primary
+                            h3.h5 Class times
+                            p.text-muted.mb-0 Available times are shown in the booking calendar below. After the trial, we'll let you know if there's an existing class your child can join.
+                    .col-md-6.col-lg-4
+                        .fee-card.h-100
+                            i.bi.bi-laptop.fs-2.text-primary
+                            h3.h5 Laptop optional
+                            p.text-muted.mb-0 Not required, but recommended. With their own laptop, your child's projects stay with them and they can keep building at home.
+
+        // FAQ
+        section#faq.page-section
+            .container.px-4.px-lg-5
+                .row.justify-content-center
+                    .col-lg-8
+                        h2.text-center.mt-0 Questions Parents Ask
+                        hr.divider
+                        #faqAccordion.accordion.mt-5
+                            +faq('bored', 'Will my child get bored? Is it just typing code?')
+                                p.mb-0 Not likely. Every lesson is built around making something, like a game, an animation or a quiz. We learn one new idea, then your child spends most of the lesson building their own version of it. Kids who just wanted to play games usually find out they love making them.
+                            +faq('term', 'How much can my child learn in one term?')
+                                p.mb-0
+                                    | It depends where they start. See 
+                                    a(href='#term') what a term looks like at each stage
+                                    | . We'd rather your child truly masters a few ideas than rushes through many, so they feel capable and keep coming back. After the trial you'll get a clear plan for their first term.
+                            +faq('everything', 'My child is interested in a bit of everything. Where do we start?')
+                                p.mb-0 That's completely normal at this age, and it's what the trial is for. Your child builds something quick and fun while Alvin sees what they already know and what lights them up. From there we suggest a starting point and the kind of projects they'll enjoy most.
+                            +faq('robotics', 'Is it games, robotics, or "real" programming?')
+                                p.mb-0 It's real programming, taught mostly through games. Kids build games and programs in Scratch, MakeCode Arcade and Python. Some students load their MakeCode games onto a handheld micro:bit game console. We don't currently run a robotics program.
+                            +faq('experience', 'My child has never coded, or already did Scratch at school. Is that OK?')
+                                p.mb-0 Both are fine. Complete beginners start with friendly blocks. Kids with some experience, and older beginners, start further along, often straight into Python. The trial includes a quick placement check so nobody repeats what they already know.
+                            +faq('deposit', 'Why is the trial $20?')
+                                p.mb-0 The $20 reserves a 45-minute session for your child, and it's credited in full to your first term when you enrol. If plans change, cancel at least 2 days ahead for a full refund, or reschedule once at no cost if something comes up last minute, like illness.
+                            +faq('fees', 'How much are classes, and when are they?')
+                                p.mb-0 Classes are $59 per 45-minute lesson with at most 3 students, billed per term (about 10 lessons). Active &amp; Creative Kids vouchers are accepted. Available times are shown in the booking calendar, and after the trial we'll let you know if your child can join an existing class.
+                            +faq('where', 'Where are classes held? Do you teach online?')
+                                p.mb-0 All classes are in person at 5 Glen Abbey St, Rouse Hill. We don't currently teach online. A laptop is optional but recommended, so your child's projects stay with them.
 
         // Trial Booking
         section#trial-form.page-section.bg-light
             .container.px-4.px-lg-5
                 .row.gx-4.gx-lg-5.justify-content-center
                     .col-lg-8.text-center
-                        h2.mt-0 Book Your Trial Session
+                        h2.mt-0 Book Your $20 Trial
                         hr.divider
-                        p.text-muted.mb-3 Experience our expert coding tuition firsthand! Pick a time below to book your child's trial session. A $20 deposit secures the spot and is credited to your first term when you enrol.
-                        p.text-muted.small.mb-4 Cancel at least 2 days ahead for a full refund. If something last-minute comes up (like illness), you can reschedule once at no extra cost.
+                        p.text-muted.mb-4 Not sure what your child is into yet? That's what the trial is for.
+                .row.g-4.justify-content-center.mb-5
+                    .col-md-4
+                        .trial-step.h-100
+                            .lesson-num 1
+                            h3.h6 Pick a time
+                            p.small.text-muted.mb-0 Choose a slot below and pay the $20 deposit, which is credited to your first term.
+                    .col-md-4
+                        .trial-step.h-100
+                            .lesson-num 2
+                            h3.h6 45 minutes of building
+                            p.small.text-muted.mb-0 Your child makes something fun while Alvin finds out what they already know and what excites them.
+                    .col-md-4
+                        .trial-step.h-100
+                            .lesson-num 3
+                            h3.h6 A plan for next term
+                            p.small.text-muted.mb-0 You leave with a clear, personalised plan: where to start, what they'll build, and which class fits.
                 // Cal.com inline booking embed — parents pick an available time slot.
                 .row.gx-4.gx-lg-5.justify-content-center
                     .col-12.col-xl-10
                         .cal-embed-card
                             #cal-trial-embed(style='min-width:320px;width:100%;height:100%;overflow:auto')
+                        p.text-muted.small.text-center.mt-3.mb-0 Cancel at least 2 days ahead for a full refund. If something last-minute comes up (like illness), you can reschedule once at no extra cost.
                         script.
                             (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if (typeof namespace === "string") { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]); } else p(cal, ar); return; } p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
                             Cal("init", "trial", { origin: "https://cal.com" });
@@ -288,7 +413,7 @@ html(lang='en')
                 .row.gx-4.gx-lg-5.justify-content-center.mt-4
                     .col-lg-8.text-center
                         .call-cta
-                            p.mb-3.fw-bold Prefer to talk? Call or text us directly:
+                            p.mb-3.fw-bold Still have a question? Call or text Alvin directly:
                             a.btn.btn-primary.btn-lg.me-2.mb-2(href='tel:+61455666640', onclick='sparkReportCall()')
                                 i.bi.bi-telephone-fill.me-2
                                 | Call 0455 666 640
@@ -296,45 +421,4 @@ html(lang='en')
                                 i.bi.bi-chat-dots-fill.me-2
                                 | Text us
 
-        // Call to action
-        section#contact.page-section.bg-dark.text-white
-            .container.px-4.px-lg-5.text-center
-                h2.mb-4 Ready to Start Your Child's Coding Journey in Rouse Hill?
-                p.mb-4.fs-5 Book a trial session today and see why Rouse Hill and Sydney families choose Spark Coding for their children's programming education. Serving Rouse Hill, Castle Hill, Kellyville, and surrounding northwest Sydney areas. A $20 deposit secures your spot — credited to your first term when you enrol.
-                .row.gx-4.gx-lg-5.justify-content-center
-                    .col-lg-8.text-center.mb-5.mb-lg-0
-                        a.btn.btn-light.btn-xl.me-2.mb-2(href='#trial-form') Book a Trial Now
-                        a.btn.btn-outline-light.btn-xl.mb-2(href='tel:+61455666640', onclick='sparkReportCall()')
-                            i.bi.bi-telephone-fill.me-2
-                            | Call 0455 666 640
-
-        // Footer
-        footer.bg-light.py-5
-            .container.px-4.px-lg-5
-                .small.text-center.text-muted
-                    span.d-inline-block.mb-3
-                        i.bi.bi-patch-check-fill.me-2
-                        | Active &amp; Creative Kids voucher provider
-                    br
-                    | Copyright &copy; 2025 - Spark Coding
-                    br
-                    | ABN: 828 472 009 02
-                    br
-                    | Email: 
-                    a.text-muted(href="mailto:admin@sparkcoding.com.au") admin@sparkcoding.com.au
-
-        // Bootstrap core JS
-        script(src='https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js')
-
-        // SimpleLightbox plugin JS
-        script(src='https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.js')
-
-        // Core theme JS
-        script(src='js/scripts.js')
-
-        // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-        // * *                               SB Forms JS                               * *
-        // * * Activate your form at https://startbootstrap.com/solution/contact-forms * *
-        // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-
-        //- script(src='https://cdn.startbootstrap.com/sb-forms-latest.js')
+        include includes/footer.pug
