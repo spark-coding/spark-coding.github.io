@@ -11088,7 +11088,6 @@ header.masthead .hero-caption strong {
   margin-bottom: 1rem;
 }
 
-.build-card,
 .lesson-step,
 .trial-step,
 .term-card,
@@ -11101,25 +11100,47 @@ header.masthead .hero-caption strong {
   box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.06);
 }
 
-.build-card {
-  padding: 1.25rem;
+.build-chips {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-bottom: 1.5rem;
 }
-.build-card .build-icon {
+
+.build-chip {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  width: 2.75rem;
-  height: 2.75rem;
-  border-radius: 0.75rem;
-  background-color: rgba(244, 98, 58, 0.1);
-  color: #f4623a;
-  font-size: 1.35rem;
+  gap: 0.45rem;
+  padding: 0.4rem 0.85rem;
+  border-radius: 2rem;
+  background-color: #fff;
+  box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.06);
 }
-.build-card .build-platform {
-  display: inline-block;
-  background-color: rgba(244, 98, 58, 0.12);
-  color: #d6370c;
-  font-weight: 600;
+.build-chip .bi {
+  color: #f4623a;
+}
+.build-chip .build-chip-platform {
+  font-size: 0.8rem;
+  color: #6c757d;
+}
+
+.arena-callout {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  max-width: 44rem;
+  margin: 0 auto;
+  padding: 1rem 1.25rem;
+  border-radius: 0.75rem;
+  background-color: rgba(244, 98, 58, 0.08);
+  border: 1px solid rgba(244, 98, 58, 0.25);
+  text-align: left;
+}
+.arena-callout .bi {
+  flex-shrink: 0;
+  font-size: 1.75rem;
+  color: #f4623a;
 }
 
 .project-carousel .project-art {
