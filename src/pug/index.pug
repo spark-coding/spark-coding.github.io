@@ -5,12 +5,13 @@ html(lang='en')
 
     mixin buildCard(icon, title, platform, text)
         .col-md-6.col-lg-4
-            .build-card.h-100
-                .build-icon
+            .build-card.h-100.d-flex
+                .build-icon.flex-shrink-0.me-3
                     i.bi(class='bi-' + icon)
-                h3.h5.mb-1= title
-                span.badge.build-platform.mb-2= platform
-                p.text-muted.mb-0= text
+                div
+                    h4.h6.mb-1= title
+                    span.badge.build-platform.mb-2= platform
+                    p.small.text-muted.mb-0= text
 
     mixin termCard(stage, who, tool, items, build)
         .col-md-6.col-xl-3
@@ -188,34 +189,11 @@ html(lang='en')
                             i.bi.bi-star-fill.me-1
                             a.text-white-75(href='#reviews') Parent reviews on Google
                     .col-lg-6.mt-5.mt-lg-0.text-center
-                        figure.hero-carousel.mb-0
-                            #heroBuilds.carousel.slide(data-bs-ride='carousel', data-bs-interval='6000', aria-label='Real projects by Spark Coding students')
-                                .carousel-inner
-                                    .carousel-item.active
-                                        img.hero-art(src='/assets/img/hero-slide-1.webp', alt="A star catcher game running in MakeCode Arcade next to the student's blocks: a star falls every second, catching it adds a point, and 10 points wins", width='1500', height='1140', fetchpriority='high')
-                                        .hero-slide-caption
-                                            strong Star catcher · MakeCode Arcade
-                                            span The student's own blocks, running as a real game: catch 10 falling stars to win.
-                                    .carousel-item
-                                        img.hero-art(src='/assets/img/hero-slide-2.webp', alt='A Scratch Secret Vault puzzle with doors 1, 3 and 4 open while A and S are held, next to the and/or key logic for door 4', width='1500', height='1140', decoding='async')
-                                        .hero-slide-caption
-                                            strong Secret Vault · Scratch
-                                            span Each door opens only with the right key combo (and/or logic). Holding A + S opens three of the four.
-                                    .carousel-item
-                                        img.hero-art(src='/assets/img/hero-slide-3.webp', alt='A Python number guessing game: the code with a while loop and if/elif/else, and a real run guessing 50, 60, then 58 for Congratulations!', width='1500', height='1140', decoding='async')
-                                        .hero-slide-caption
-                                            strong Number guessing game · Python
-                                            span Loops, input and if/elif/else, plus a real run of the game.
-                                .hero-carousel-nav
-                                    button.hero-carousel-btn(type='button', data-bs-target='#heroBuilds', data-bs-slide='prev', aria-label='Previous project')
-                                        i.bi.bi-chevron-left
-                                    .carousel-indicators
-                                        button.active(type='button', data-bs-target='#heroBuilds', data-bs-slide-to='0', aria-current='true', aria-label='Star catcher')
-                                        button(type='button', data-bs-target='#heroBuilds', data-bs-slide-to='1', aria-label='Secret Vault')
-                                        button(type='button', data-bs-target='#heroBuilds', data-bs-slide-to='2', aria-label='Number guessing game')
-                                    button.hero-carousel-btn(type='button', data-bs-target='#heroBuilds', data-bs-slide='next', aria-label='Next project')
-                                        i.bi.bi-chevron-right
-                            figcaption.hero-caption Real projects by Spark Coding students
+                        figure.mb-0
+                            img.hero-art(src='/assets/img/hero-slide-1.webp', alt="A student's star catcher game running on the MakeCode Arcade console next to their blocks: a star falls every second, catching it adds a point, and 10 points wins", width='1500', height='1140', fetchpriority='high')
+                            figcaption.hero-caption
+                                strong Star catcher · MakeCode Arcade
+                                | A real project by a Spark Coding student
 
         // What kids build
         section#builds.page-section
@@ -224,8 +202,33 @@ html(lang='en')
                     .col-lg-8.text-center
                         h2.mt-0 What Your Child Will Build
                         hr.divider
-                        p.text-muted.mb-5 Every lesson ends with something that works, and that they want to show you. Here are some of the projects our students make.
-                .row.g-4
+                        p.text-muted.mb-5 Every lesson ends with something that works, and that they want to show you. These are real projects by our students.
+                .row.justify-content-center
+                    .col-lg-10.col-xl-9
+                        #projectCarousel.carousel.slide.project-carousel(data-bs-ride='carousel', data-bs-interval='7000', aria-label='Real projects by Spark Coding students')
+                            .carousel-inner
+                                .carousel-item.active
+                                    img.project-art(src='/assets/img/hero-slide-2.webp', alt='A Scratch Secret Vault puzzle with doors 1, 3 and 4 open while A and S are held, next to the and/or key logic for door 4', width='1500', height='1140', loading='lazy', decoding='async')
+                                    .project-caption
+                                        strong Secret Vault · Scratch
+                                        span Each door opens only with the right key combo (and/or logic). Holding A + S opens three of the four.
+                                .carousel-item
+                                    img.project-art(src='/assets/img/hero-slide-3.webp', alt='A Python number guessing game: the code with a while loop and if/elif/else, and a real run guessing 50, 60, then 58 for Congratulations!', width='1500', height='1140', loading='lazy', decoding='async')
+                                    .project-caption
+                                        strong Number guessing game · Python
+                                        span Loops, input and if/elif/else, plus a real run of the game.
+                            .project-carousel-nav
+                                button.project-carousel-btn(type='button', data-bs-target='#projectCarousel', data-bs-slide='prev', aria-label='Previous project')
+                                    i.bi.bi-chevron-left
+                                .carousel-indicators
+                                    button.active(type='button', data-bs-target='#projectCarousel', data-bs-slide-to='0', aria-current='true', aria-label='Secret Vault')
+                                    button(type='button', data-bs-target='#projectCarousel', data-bs-slide-to='1', aria-label='Number guessing game')
+                                button.project-carousel-btn(type='button', data-bs-target='#projectCarousel', data-bs-slide='next', aria-label='Next project')
+                                    i.bi.bi-chevron-right
+                .row.justify-content-center.mt-5
+                    .col-lg-8.text-center
+                        h3.h4.mb-4 More projects students make
+                .row.g-3
                     +buildCard('hammer', 'Whack-a-Mole', 'Scratch', 'Moles pop up at random and you click fast to score. Their first real game, built while learning about timing and randomness.')
                     +buildCard('music-note-beamed', 'Tap Piano', 'Scratch', 'Click the keys and play a tune. Events, sounds and costumes, and plenty of proud demos at home.')
                     +buildCard('controller', 'Space Shooter', 'MakeCode Arcade', 'A proper arcade shooter with lives and a score, which they can load onto a handheld micro:bit game console and play.')

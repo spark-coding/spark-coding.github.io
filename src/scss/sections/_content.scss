@@ -18,17 +18,18 @@ $card-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.06);
 }
 
 .build-card {
+    padding: 1.25rem;
+
     .build-icon {
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        width: 3.25rem;
-        height: 3.25rem;
-        margin-bottom: 1rem;
+        width: 2.75rem;
+        height: 2.75rem;
         border-radius: 0.75rem;
         background-color: rgba($primary, 0.1);
         color: $primary;
-        font-size: 1.6rem;
+        font-size: 1.35rem;
     }
 
     .build-platform {
@@ -36,6 +37,66 @@ $card-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.06);
         background-color: rgba($primary, 0.12);
         color: darken($primary, 15%);
         font-weight: 600;
+    }
+}
+
+// Real student projects (slides rendered from hero-image-generator.html)
+.project-carousel {
+    .project-art {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+
+    .project-caption {
+        min-height: 3.5rem;
+        margin-top: 1rem;
+        text-align: center;
+        color: $gray-600;
+
+        strong {
+            display: block;
+            color: $gray-900;
+        }
+    }
+
+    .project-carousel-nav {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.75rem;
+        margin-top: 0.75rem;
+
+        .carousel-indicators {
+            position: static;
+            margin: 0;
+
+            [data-bs-target] {
+                width: 0.6rem;
+                height: 0.6rem;
+                margin: 0 0.3rem;
+                border: 0;
+                border-radius: 50%;
+                background-color: $primary;
+            }
+        }
+    }
+
+    .project-carousel-btn {
+        display: inline-grid;
+        place-items: center;
+        width: 2.25rem;
+        height: 2.25rem;
+        padding: 0;
+        border: 1px solid rgba($primary, 0.5);
+        border-radius: 50%;
+        background: transparent;
+        color: $primary;
+
+        &:hover,
+        &:focus-visible {
+            background: rgba($primary, 0.1);
+        }
     }
 }
 
