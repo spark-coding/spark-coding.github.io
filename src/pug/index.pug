@@ -3,15 +3,11 @@ html(lang='en')
 
     - var base = ''
 
-    mixin buildCard(icon, title, platform, text)
-        .col-md-6.col-lg-4
-            .build-card.h-100.d-flex
-                .build-icon.flex-shrink-0.me-3
-                    i.bi(class='bi-' + icon)
-                div
-                    h4.h6.mb-1= title
-                    span.badge.build-platform.mb-2= platform
-                    p.small.text-muted.mb-0= text
+    mixin buildChip(icon, title, platform)
+        li.build-chip
+            i.bi(class='bi-' + icon)
+            span.fw-semibold= title
+            span.build-chip-platform= platform
 
     mixin termCard(stage, who, tool, items, build)
         .col-md-6.col-xl-3
@@ -245,15 +241,17 @@ html(lang='en')
                                 button.project-carousel-btn(type='button', data-bs-target='#projectCarousel', data-bs-slide='next', aria-label='Next project')
                                     i.bi.bi-chevron-right
                 .row.justify-content-center.mt-5
-                    .col-lg-8.text-center
-                        h3.h4.mb-4 More projects students make
-                .row.g-3
-                    +buildCard('hammer', 'Whack-a-Mole', 'Scratch', 'Moles pop up at random and you click fast to score. Their first real game, built while learning about timing and randomness.')
-                    +buildCard('music-note-beamed', 'Tap Piano', 'Scratch', 'Click the keys and play a tune. Events, sounds and costumes, and plenty of proud demos at home.')
-                    +buildCard('controller', 'Space Shooter', 'MakeCode Arcade', 'A proper arcade shooter with lives and a score, which they can load onto a handheld micro:bit game console and play.')
-                    +buildCard('grid-3x3-gap', 'Word Guess (Wordle)', 'Python', 'Their own version of the word game everyone plays, written in real Python code.')
-                    +buildCard('key', 'Secret Codes', 'Python', 'Encrypt and crack secret messages with a Caesar cipher, and find out how computers turn letters into numbers.')
-                    +buildCard('trophy', 'Spark Arena', 'Python bots', 'Write a bot, then watch it battle classmates\' bots in Tron, Maze and Pond tournaments on the big screen.')
+                    .col-lg-10.col-xl-9.text-center
+                        h3.h5.mb-3 Also on the menu
+                        ul.build-chips.list-unstyled
+                            +buildChip('hammer', 'Whack-a-Mole', 'Scratch')
+                            +buildChip('controller', 'Space Shooter', 'MakeCode Arcade')
+                            +buildChip('grid-3x3-gap', 'Wordle', 'Python')
+                        .arena-callout
+                            i.bi.bi-trophy-fill
+                            p.mb-0
+                                strong Spark Arena:
+                                |  students write Python bots, then watch them battle classmates' bots in Tron, Maze and Pond tournaments on the big screen.
 
         // What a lesson looks like
         section#lessons.page-section.bg-light
