@@ -10949,6 +10949,17 @@ header.masthead .hero-art {
   height: auto;
   margin: 0 auto;
 }
+header.masthead .hero-trust {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.35rem 1.5rem;
+}
+@media (min-width: 992px) {
+  header.masthead .hero-trust {
+    justify-content: flex-start;
+  }
+}
 header.masthead .hero-caption {
   margin-top: 0.75rem;
   font-size: 0.9rem;
