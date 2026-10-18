@@ -4,14 +4,18 @@
 <meta charset="UTF-8">
 <title>Spark Coding real-project images generator</title>
 <!--
-  Source for src/assets/img/hero-slide-{1,2,3}.webp: slide 1 is the homepage hero image,
-  slides 2-3 are the carousel in What Your Child Will Build.
+  Source for src/assets/img/hero-slide-{1..6}.webp: slide 1 is the homepage hero image,
+  slides 2-6 are the carousel in What Your Child Will Build.
   Real student work only (no names or usernames):
     1. MakeCode Arcade star catcher: student's own code loaded into arcade.makecode.com,
        hero-src/makecode-star-console.png (simulator console running) + makecode-*.png (the student's scripts)
     2. Scratch Secret Vault remix: hero-src/scratch-vault-stage.png (played in TurboWarp holding A + S)
        + scratch-secret-vault.png (door 4 logic)
     3. Python number guessing game: student's code verbatim + a real run (seeded so the number is 58)
+    4. MakeCode Arcade memory game: hero-src/makecode-memory-console.png (won by pressing U, R, L, D)
+       + makecode-memory-start.png / makecode-memory-judge.png
+    5. Scratch ball toss: hero-src/scratch-balltoss-stage.png (TurboWarp) + scratch-balltoss-ball.png
+    6. Python ORAC problem (AIO 2008 Ladybugs, scored 100%): student's code verbatim + a real run
   Render (from website/):  node scripts/render-hero-image.js
 -->
 <style>
@@ -98,6 +102,65 @@ guess <span class="in">60</span>
 less
 guess <span class="in">58</span>
 Congratulations!</div>
+  </div>
+</div>
+
+<!-- 4. MakeCode Arcade memory game -->
+<div class="slide" id="slide-4">
+  <div class="console" style="left: 20px; top: 40px; width: 390px;">
+    <img src="hero-src/makecode-memory-console.png" alt="">
+  </div>
+  <div class="win light" style="right: 0; top: 0; width: 280px; padding-bottom: 14px;">
+    <div class="bar"><i></i><i></i><i></i></div>
+    <img src="hero-src/makecode-memory-start.png" alt="" style="width: 240px; margin: 14px 0 0 20px;">
+  </div>
+  <div class="win light" style="right: 0; bottom: 0; width: 540px; padding-bottom: 14px;">
+    <div class="bar"><i></i><i></i><i></i></div>
+    <img src="hero-src/makecode-memory-judge.png" alt="" style="width: 506px; margin: 14px 0 0 18px;">
+  </div>
+</div>
+
+<!-- 5. Scratch ball toss -->
+<div class="slide" id="slide-5">
+  <div class="win" style="left: 0; top: 0; width: 620px; background: #fff;">
+    <div class="bar"><i></i><i></i><i></i></div>
+    <img src="hero-src/scratch-balltoss-stage.png" alt="">
+  </div>
+  <div class="win light" style="right: 0; bottom: 0; width: 560px; padding-bottom: 14px;">
+    <div class="bar"><i></i><i></i><i></i></div>
+    <img src="hero-src/scratch-balltoss-ball.png" alt="" style="width: 530px; margin: 14px 0 0 14px;">
+  </div>
+</div>
+
+<!-- 6. Python ORAC problem (AIO 2008 Ladybugs), scored 100% -->
+<div class="slide" id="slide-6">
+  <div class="win" style="left: 0; top: 0; width: 640px;">
+    <div class="bar"><i></i><i></i><i></i></div>
+    <div class="py">num <span class="kw">=</span> <span class="fn">int</span>(<span class="fn">input</span>())
+biggest <span class="kw">=</span> <span class="num">0</span>
+smallest <span class="kw">=</span> <span class="num">1000000000</span>
+<span class="kw">for</span> n <span class="kw">in</span> <span class="fn">range</span>(num):
+
+    post <span class="kw">=</span> <span class="fn">int</span>(<span class="fn">input</span>())
+    <span class="kw">if</span> post <span class="kw">&lt;</span> smallest:
+        smallest <span class="kw">=</span> post
+    <span class="kw">if</span> post <span class="kw">&gt;</span> biggest:
+        biggest <span class="kw">=</span> post
+<span class="fn">print</span>(biggest <span class="kw">-</span> smallest <span class="kw">+</span> <span class="num">1</span> )</div>
+  </div>
+  <div class="keys" style="left: 90px; bottom: 70px; flex-direction: column; align-items: flex-start; gap: 4px; font-size: 22px;">
+    <span>Informatics Olympiad problem</span>
+    <span style="font-size: 44px; font-weight: 800; color: #9fe6a0;">100% score</span>
+  </div>
+  <div class="win" style="right: 0; top: 150px; width: 300px; background: #0f1420;">
+    <div class="bar"><i></i><i></i><i></i></div>
+    <div class="term"><span class="in">5
+8
+3
+11
+6
+9</span>
+9</div>
   </div>
 </div>
 

@@ -214,16 +214,34 @@ html(lang='en')
                                         strong Secret Vault · Scratch
                                         span Each door opens only with the right key combo (and/or logic). Holding A + S opens three of the four.
                                 .carousel-item
+                                    img.project-art(src='/assets/img/hero-slide-4.webp', alt='A MakeCode Arcade memory game showing YOU WIN! on the handheld console, next to the secret list of moves and the judge function that checks each button press', width='1500', height='1140', loading='lazy', decoding='async')
+                                    .project-caption
+                                        strong Memory game · MakeCode Arcade
+                                        span Repeat the secret sequence of button presses. A list stores the moves and their own function judges each press.
+                                .carousel-item
                                     img.project-art(src='/assets/img/hero-slide-3.webp', alt='A Python number guessing game: the code with a while loop and if/elif/else, and a real run guessing 50, 60, then 58 for Congratulations!', width='1500', height='1140', loading='lazy', decoding='async')
                                     .project-caption
                                         strong Number guessing game · Python
                                         span Loops, input and if/elif/else, plus a real run of the game.
+                                .carousel-item
+                                    img.project-art(src='/assets/img/hero-slide-5.webp', alt='A Scratch ball toss game with a bear and a player catching a ball, next to the ball script that glides to x and y coordinates with pick random', width='1500', height='1140', loading='lazy', decoding='async')
+                                    .project-caption
+                                        strong Ball toss · Scratch
+                                        span The ball glides between two catchers to a random height each time, using x/y coordinates and touching checks.
+                                .carousel-item
+                                    img.project-art(src='/assets/img/hero-slide-6.webp', alt='Python code solving an Australian Informatics Olympiad problem that finds the smallest and biggest numbers in a list, with a real run and a 100% score badge', width='1500', height='1140', loading='lazy', decoding='async')
+                                    .project-caption
+                                        strong Olympiad problem · Python
+                                        span A past Australian Informatics Olympiad problem: track the smallest and biggest values in a loop. Scored 100% on the judge.
                             .project-carousel-nav
                                 button.project-carousel-btn(type='button', data-bs-target='#projectCarousel', data-bs-slide='prev', aria-label='Previous project')
                                     i.bi.bi-chevron-left
                                 .carousel-indicators
                                     button.active(type='button', data-bs-target='#projectCarousel', data-bs-slide-to='0', aria-current='true', aria-label='Secret Vault')
-                                    button(type='button', data-bs-target='#projectCarousel', data-bs-slide-to='1', aria-label='Number guessing game')
+                                    button(type='button', data-bs-target='#projectCarousel', data-bs-slide-to='1', aria-label='Memory game')
+                                    button(type='button', data-bs-target='#projectCarousel', data-bs-slide-to='2', aria-label='Number guessing game')
+                                    button(type='button', data-bs-target='#projectCarousel', data-bs-slide-to='3', aria-label='Ball toss')
+                                    button(type='button', data-bs-target='#projectCarousel', data-bs-slide-to='4', aria-label='Olympiad problem')
                                 button.project-carousel-btn(type='button', data-bs-target='#projectCarousel', data-bs-slide='next', aria-label='Next project')
                                     i.bi.bi-chevron-right
                 .row.justify-content-center.mt-5
