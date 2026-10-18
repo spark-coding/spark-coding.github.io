@@ -10945,61 +10945,18 @@ header.masthead h1, header.masthead .h1 {
 header.masthead .hero-art {
   display: block;
   width: 100%;
-  height: auto;
-}
-header.masthead .hero-carousel {
   max-width: 30rem;
-  margin-left: auto;
-  margin-right: auto;
-}
-header.masthead .hero-slide-caption {
-  min-height: 4.5rem;
-  margin-top: 0.75rem;
-  font-size: 0.95rem;
-  line-height: 1.4;
-  color: rgba(255, 255, 255, 0.8);
-}
-header.masthead .hero-slide-caption strong {
-  display: block;
-  color: #fff;
-}
-header.masthead .hero-carousel-nav {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.75rem;
-  margin-top: 0.5rem;
-}
-header.masthead .hero-carousel-nav .carousel-indicators {
-  position: static;
-  margin: 0;
-}
-header.masthead .hero-carousel-nav .carousel-indicators [data-bs-target] {
-  width: 0.6rem;
-  height: 0.6rem;
-  margin: 0 0.3rem;
-  border: 0;
-  border-radius: 50%;
-  background-color: #fff;
-}
-header.masthead .hero-carousel-btn {
-  display: inline-grid;
-  place-items: center;
-  width: 2.25rem;
-  height: 2.25rem;
-  padding: 0;
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  border-radius: 50%;
-  background: transparent;
-  color: #fff;
-}
-header.masthead .hero-carousel-btn:hover, header.masthead .hero-carousel-btn:focus-visible {
-  background: rgba(255, 255, 255, 0.15);
+  height: auto;
+  margin: 0 auto;
 }
 header.masthead .hero-caption {
   margin-top: 0.75rem;
   font-size: 0.9rem;
   color: rgba(255, 255, 255, 0.75);
+}
+header.masthead .hero-caption strong {
+  display: block;
+  color: #fff;
 }
 @media (min-width: 992px) {
   header.masthead {
@@ -11014,11 +10971,8 @@ header.masthead .hero-caption {
   header.masthead h1, header.masthead .h1 {
     font-size: 2.6rem;
   }
-  header.masthead .hero-carousel {
+  header.masthead .hero-art {
     max-width: 100%;
-  }
-  header.masthead .hero-slide-caption {
-    font-size: 1rem;
   }
 }
 @media (min-width: 1200px) {
@@ -11136,23 +11090,74 @@ header.masthead .hero-caption {
   box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.06);
 }
 
+.build-card {
+  padding: 1.25rem;
+}
 .build-card .build-icon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 3.25rem;
-  height: 3.25rem;
-  margin-bottom: 1rem;
+  width: 2.75rem;
+  height: 2.75rem;
   border-radius: 0.75rem;
   background-color: rgba(244, 98, 58, 0.1);
   color: #f4623a;
-  font-size: 1.6rem;
+  font-size: 1.35rem;
 }
 .build-card .build-platform {
   display: inline-block;
   background-color: rgba(244, 98, 58, 0.12);
   color: #d6370c;
   font-weight: 600;
+}
+
+.project-carousel .project-art {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.project-carousel .project-caption {
+  min-height: 3.5rem;
+  margin-top: 1rem;
+  text-align: center;
+  color: #6c757d;
+}
+.project-carousel .project-caption strong {
+  display: block;
+  color: #212529;
+}
+.project-carousel .project-carousel-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+}
+.project-carousel .project-carousel-nav .carousel-indicators {
+  position: static;
+  margin: 0;
+}
+.project-carousel .project-carousel-nav .carousel-indicators [data-bs-target] {
+  width: 0.6rem;
+  height: 0.6rem;
+  margin: 0 0.3rem;
+  border: 0;
+  border-radius: 50%;
+  background-color: #f4623a;
+}
+.project-carousel .project-carousel-btn {
+  display: inline-grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  padding: 0;
+  border: 1px solid rgba(244, 98, 58, 0.5);
+  border-radius: 50%;
+  background: transparent;
+  color: #f4623a;
+}
+.project-carousel .project-carousel-btn:hover, .project-carousel .project-carousel-btn:focus-visible {
+  background: rgba(244, 98, 58, 0.1);
 }
 
 .lesson-num {

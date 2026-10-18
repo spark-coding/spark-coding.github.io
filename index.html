@@ -175,42 +175,12 @@
                         </p>
                     </div>
                     <div class="col-lg-6 mt-5 mt-lg-0 text-center">
-                        <figure class="hero-carousel mb-0">
-                            <div class="carousel slide" id="heroBuilds" data-bs-ride="carousel" data-bs-interval="6000" aria-label="Real projects by Spark Coding students">
-                                <div class="carousel-inner">
-                                    <div class="carousel-item active">
-                                        <img class="hero-art" src="/assets/img/hero-slide-1.webp" alt="A star catcher game running in MakeCode Arcade next to the student's blocks: a star falls every second, catching it adds a point, and 10 points wins" width="1500" height="1140" fetchpriority="high" />
-                                        <div class="hero-slide-caption">
-                                            <strong>Star catcher · MakeCode Arcade</strong>
-                                            <span>The student's own blocks, running as a real game: catch 10 falling stars to win.</span>
-                                        </div>
-                                    </div>
-                                    <div class="carousel-item">
-                                        <img class="hero-art" src="/assets/img/hero-slide-2.webp" alt="A Scratch Secret Vault puzzle with doors 1, 3 and 4 open while A and S are held, next to the and/or key logic for door 4" width="1500" height="1140" decoding="async" />
-                                        <div class="hero-slide-caption">
-                                            <strong>Secret Vault · Scratch</strong>
-                                            <span>Each door opens only with the right key combo (and/or logic). Holding A + S opens three of the four.</span>
-                                        </div>
-                                    </div>
-                                    <div class="carousel-item">
-                                        <img class="hero-art" src="/assets/img/hero-slide-3.webp" alt="A Python number guessing game: the code with a while loop and if/elif/else, and a real run guessing 50, 60, then 58 for Congratulations!" width="1500" height="1140" decoding="async" />
-                                        <div class="hero-slide-caption">
-                                            <strong>Number guessing game · Python</strong>
-                                            <span>Loops, input and if/elif/else, plus a real run of the game.</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="hero-carousel-nav">
-                                    <button class="hero-carousel-btn" type="button" data-bs-target="#heroBuilds" data-bs-slide="prev" aria-label="Previous project"><i class="bi bi-chevron-left"></i></button>
-                                    <div class="carousel-indicators">
-                                        <button class="active" type="button" data-bs-target="#heroBuilds" data-bs-slide-to="0" aria-current="true" aria-label="Star catcher"></button>
-                                        <button type="button" data-bs-target="#heroBuilds" data-bs-slide-to="1" aria-label="Secret Vault"></button>
-                                        <button type="button" data-bs-target="#heroBuilds" data-bs-slide-to="2" aria-label="Number guessing game"></button>
-                                    </div>
-                                    <button class="hero-carousel-btn" type="button" data-bs-target="#heroBuilds" data-bs-slide="next" aria-label="Next project"><i class="bi bi-chevron-right"></i></button>
-                                </div>
-                            </div>
-                            <figcaption class="hero-caption">Real projects by Spark Coding students</figcaption>
+                        <figure class="mb-0">
+                            <img class="hero-art" src="/assets/img/hero-slide-1.webp" alt="A student's star catcher game running on the MakeCode Arcade console next to their blocks: a star falls every second, catching it adds a point, and 10 points wins" width="1500" height="1140" fetchpriority="high" />
+                            <figcaption class="hero-caption">
+                                <strong>Star catcher · MakeCode Arcade</strong>
+                                A real project by a Spark Coding student
+                            </figcaption>
                         </figure>
                     </div>
                 </div>
@@ -223,56 +193,101 @@
                     <div class="col-lg-8 text-center">
                         <h2 class="mt-0">What Your Child Will Build</h2>
                         <hr class="divider" />
-                        <p class="text-muted mb-5">Every lesson ends with something that works, and that they want to show you. Here are some of the projects our students make.</p>
+                        <p class="text-muted mb-5">Every lesson ends with something that works, and that they want to show you. These are real projects by our students.</p>
                     </div>
                 </div>
-                <div class="row g-4">
+                <div class="row justify-content-center">
+                    <div class="col-lg-10 col-xl-9">
+                        <div class="carousel slide project-carousel" id="projectCarousel" data-bs-ride="carousel" data-bs-interval="7000" aria-label="Real projects by Spark Coding students">
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <img class="project-art" src="/assets/img/hero-slide-2.webp" alt="A Scratch Secret Vault puzzle with doors 1, 3 and 4 open while A and S are held, next to the and/or key logic for door 4" width="1500" height="1140" loading="lazy" decoding="async" />
+                                    <div class="project-caption">
+                                        <strong>Secret Vault · Scratch</strong>
+                                        <span>Each door opens only with the right key combo (and/or logic). Holding A + S opens three of the four.</span>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                    <img class="project-art" src="/assets/img/hero-slide-3.webp" alt="A Python number guessing game: the code with a while loop and if/elif/else, and a real run guessing 50, 60, then 58 for Congratulations!" width="1500" height="1140" loading="lazy" decoding="async" />
+                                    <div class="project-caption">
+                                        <strong>Number guessing game · Python</strong>
+                                        <span>Loops, input and if/elif/else, plus a real run of the game.</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="project-carousel-nav">
+                                <button class="project-carousel-btn" type="button" data-bs-target="#projectCarousel" data-bs-slide="prev" aria-label="Previous project"><i class="bi bi-chevron-left"></i></button>
+                                <div class="carousel-indicators">
+                                    <button class="active" type="button" data-bs-target="#projectCarousel" data-bs-slide-to="0" aria-current="true" aria-label="Secret Vault"></button>
+                                    <button type="button" data-bs-target="#projectCarousel" data-bs-slide-to="1" aria-label="Number guessing game"></button>
+                                </div>
+                                <button class="project-carousel-btn" type="button" data-bs-target="#projectCarousel" data-bs-slide="next" aria-label="Next project"><i class="bi bi-chevron-right"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-center mt-5">
+                    <div class="col-lg-8 text-center"><h3 class="h4 mb-4">More projects students make</h3></div>
+                </div>
+                <div class="row g-3">
                     <div class="col-md-6 col-lg-4">
-                        <div class="build-card h-100">
-                            <div class="build-icon"><i class="bi bi-hammer"></i></div>
-                            <h3 class="h5 mb-1">Whack-a-Mole</h3>
-                            <span class="badge build-platform mb-2">Scratch</span>
-                            <p class="text-muted mb-0">Moles pop up at random and you click fast to score. Their first real game, built while learning about timing and randomness.</p>
+                        <div class="build-card h-100 d-flex">
+                            <div class="build-icon flex-shrink-0 me-3"><i class="bi bi-hammer"></i></div>
+                            <div>
+                                <h4 class="h6 mb-1">Whack-a-Mole</h4>
+                                <span class="badge build-platform mb-2">Scratch</span>
+                                <p class="small text-muted mb-0">Moles pop up at random and you click fast to score. Their first real game, built while learning about timing and randomness.</p>
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-6 col-lg-4">
-                        <div class="build-card h-100">
-                            <div class="build-icon"><i class="bi bi-music-note-beamed"></i></div>
-                            <h3 class="h5 mb-1">Tap Piano</h3>
-                            <span class="badge build-platform mb-2">Scratch</span>
-                            <p class="text-muted mb-0">Click the keys and play a tune. Events, sounds and costumes, and plenty of proud demos at home.</p>
+                        <div class="build-card h-100 d-flex">
+                            <div class="build-icon flex-shrink-0 me-3"><i class="bi bi-music-note-beamed"></i></div>
+                            <div>
+                                <h4 class="h6 mb-1">Tap Piano</h4>
+                                <span class="badge build-platform mb-2">Scratch</span>
+                                <p class="small text-muted mb-0">Click the keys and play a tune. Events, sounds and costumes, and plenty of proud demos at home.</p>
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-6 col-lg-4">
-                        <div class="build-card h-100">
-                            <div class="build-icon"><i class="bi bi-controller"></i></div>
-                            <h3 class="h5 mb-1">Space Shooter</h3>
-                            <span class="badge build-platform mb-2">MakeCode Arcade</span>
-                            <p class="text-muted mb-0">A proper arcade shooter with lives and a score, which they can load onto a handheld micro:bit game console and play.</p>
+                        <div class="build-card h-100 d-flex">
+                            <div class="build-icon flex-shrink-0 me-3"><i class="bi bi-controller"></i></div>
+                            <div>
+                                <h4 class="h6 mb-1">Space Shooter</h4>
+                                <span class="badge build-platform mb-2">MakeCode Arcade</span>
+                                <p class="small text-muted mb-0">A proper arcade shooter with lives and a score, which they can load onto a handheld micro:bit game console and play.</p>
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-6 col-lg-4">
-                        <div class="build-card h-100">
-                            <div class="build-icon"><i class="bi bi-grid-3x3-gap"></i></div>
-                            <h3 class="h5 mb-1">Word Guess (Wordle)</h3>
-                            <span class="badge build-platform mb-2">Python</span>
-                            <p class="text-muted mb-0">Their own version of the word game everyone plays, written in real Python code.</p>
+                        <div class="build-card h-100 d-flex">
+                            <div class="build-icon flex-shrink-0 me-3"><i class="bi bi-grid-3x3-gap"></i></div>
+                            <div>
+                                <h4 class="h6 mb-1">Word Guess (Wordle)</h4>
+                                <span class="badge build-platform mb-2">Python</span>
+                                <p class="small text-muted mb-0">Their own version of the word game everyone plays, written in real Python code.</p>
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-6 col-lg-4">
-                        <div class="build-card h-100">
-                            <div class="build-icon"><i class="bi bi-key"></i></div>
-                            <h3 class="h5 mb-1">Secret Codes</h3>
-                            <span class="badge build-platform mb-2">Python</span>
-                            <p class="text-muted mb-0">Encrypt and crack secret messages with a Caesar cipher, and find out how computers turn letters into numbers.</p>
+                        <div class="build-card h-100 d-flex">
+                            <div class="build-icon flex-shrink-0 me-3"><i class="bi bi-key"></i></div>
+                            <div>
+                                <h4 class="h6 mb-1">Secret Codes</h4>
+                                <span class="badge build-platform mb-2">Python</span>
+                                <p class="small text-muted mb-0">Encrypt and crack secret messages with a Caesar cipher, and find out how computers turn letters into numbers.</p>
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-6 col-lg-4">
-                        <div class="build-card h-100">
-                            <div class="build-icon"><i class="bi bi-trophy"></i></div>
-                            <h3 class="h5 mb-1">Spark Arena</h3>
-                            <span class="badge build-platform mb-2">Python bots</span>
-                            <p class="text-muted mb-0">Write a bot, then watch it battle classmates' bots in Tron, Maze and Pond tournaments on the big screen.</p>
+                        <div class="build-card h-100 d-flex">
+                            <div class="build-icon flex-shrink-0 me-3"><i class="bi bi-trophy"></i></div>
+                            <div>
+                                <h4 class="h6 mb-1">Spark Arena</h4>
+                                <span class="badge build-platform mb-2">Python bots</span>
+                                <p class="small text-muted mb-0">Write a bot, then watch it battle classmates' bots in Tron, Maze and Pond tournaments on the big screen.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
