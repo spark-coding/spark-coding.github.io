@@ -2,65 +2,80 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Spark Coding hero image generator</title>
+<title>Spark Coding hero carousel generator</title>
 <!--
-  Source for src/assets/img/hero-builds.webp (homepage hero).
-  Real student work only (no names):
-    hero-src/makecode-star-catcher.png  student's own code, loaded into
-                                        arcade.makecode.com and screenshotted while running
-    hero-src/scratch-secret-vault.png   student's Scratch remix (door 4 logic), scratch.mit.edu editor
-    Python card                         student's number guessing game, verbatim + a real run (seeded so the number is 58)
+  Source for src/assets/img/hero-slide-{1,2,3}.webp (homepage hero carousel).
+  Real student work only (no names or usernames):
+    1. MakeCode Arcade star catcher: student's own code loaded into arcade.makecode.com,
+       hero-src/makecode-star-console.png (simulator console running) + makecode-*.png (the student's scripts)
+    2. Scratch Secret Vault remix: hero-src/scratch-vault-stage.png (played in TurboWarp holding A + S)
+       + scratch-secret-vault.png (door 4 logic)
+    3. Python number guessing game: student's code verbatim + a real run (seeded so the number is 58)
   Render (from website/):  node scripts/render-hero-image.js
 -->
 <style>
   html, body { margin: 0; background: transparent; }
   body { font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
-  #scene { position: relative; width: 1180px; height: 1040px; }
+  .slide { position: relative; width: 1000px; height: 760px; margin-bottom: 40px; }
 
-  .laptop { position: absolute; left: 70px; top: 40px; width: 1040px; }
-  .lid { background: #1c2230; border-radius: 24px 24px 8px 8px; padding: 20px 20px 24px;
-         box-shadow: 0 30px 60px rgba(20, 10, 40, .35); }
-  .screen { border-radius: 6px; overflow: hidden; aspect-ratio: 3360 / 1760; background: #fff; }
-  .screen img { width: 100%; display: block; }
-  .base { height: 28px; margin: 0 -60px; background: linear-gradient(#c9ced8, #9aa1ae);
-          border-radius: 0 0 26px 26px; position: relative; }
-  .base::before { content: ""; position: absolute; left: 50%; top: 0; width: 160px; height: 10px;
-                  transform: translateX(-50%); background: #8a909c; border-radius: 0 0 10px 10px; }
+  .win { position: absolute; border-radius: 16px; overflow: hidden; background: #1c2230;
+         box-shadow: 0 24px 50px rgba(20, 10, 40, .4); }
+  .bar { height: 34px; display: flex; align-items: center; gap: 8px; padding: 0 16px; background: #1c2230; }
+  .bar i { width: 12px; height: 12px; border-radius: 50%; background: #ff5f57; }
+  .bar i:nth-child(2) { background: #febc2e; } .bar i:nth-child(3) { background: #28c840; }
+  .win img { display: block; width: 100%; }
+  .console { position: absolute; transform: rotate(-4deg); border-radius: 20px; overflow: hidden;
+             box-shadow: 0 28px 55px rgba(20, 10, 40, .45); }
+  .console img { display: block; width: 100%; clip-path: inset(0 1.5% 1.5% 0 round 20px); margin: 0 -1.5% -1.5% 0; width: 101.5%; }
+  .light { background: #f6f7f9; }
+  .light .bar { background: #e4e7ec; }
 
-  .card { position: absolute; border-radius: 18px; box-shadow: 0 24px 50px rgba(20, 10, 40, .35); overflow: hidden; }
-  .tag { position: absolute; top: -18px; left: 22px; z-index: 2; font-size: 19px; font-weight: 700; color: #fff;
-         padding: 7px 16px; border-radius: 999px; box-shadow: 0 6px 14px rgba(0,0,0,.2); white-space: nowrap; }
-  .wrap { position: absolute; }
+  .keys { position: absolute; display: flex; align-items: center; gap: 12px; padding: 12px 20px;
+          background: rgba(28, 34, 48, .92); border-radius: 14px; color: #fff; font-size: 24px; font-weight: 600;
+          box-shadow: 0 14px 30px rgba(20, 10, 40, .35); }
+  .key { display: inline-grid; place-items: center; width: 48px; height: 48px; border-radius: 10px;
+         background: #fff; color: #1c2230; font-weight: 800; box-shadow: inset 0 -4px 0 #b9c0cc; }
 
-  .scratch { left: 0; top: 0; width: 600px; background: #f9f9f9; padding: 22px 8px 6px; }
-  .scratch img { width: 100%; display: block; }
-  .tag-scratch { background: #855cd6; }
-
-  .py { box-sizing: border-box; left: 0; top: 0; width: 500px; background: #182030; color: #d7deea; padding: 40px 26px 22px;
-        font: 600 17px/1.4 "SF Mono", Menlo, Consolas, monospace; white-space: pre-wrap; }
-  .py .out { margin-top: 14px; padding-top: 12px; border-top: 1px solid #2f3a52; color: #9fe6a0; }
-  .py .in { color: #ffd43b; }
+  .py { box-sizing: border-box; padding: 18px 30px 26px; color: #d7deea;
+        font: 600 25px/1.45 "SF Mono", Menlo, Consolas, monospace; white-space: pre; }
+  .term { box-sizing: border-box; padding: 16px 28px 24px; color: #9fe6a0;
+          font: 600 25px/1.45 "SF Mono", Menlo, Consolas, monospace; white-space: pre; background: #0f1420; }
+  .term .in { color: #ffd43b; }
   .kw { color: #c792ea; } .fn { color: #82aaff; } .num { color: #f78c6c; } .str { color: #c3e88d; }
-  .tag-py { background: #3572a5; }
-  .tag-mc { background: #f4623a; top: -20px; left: 40px; font-size: 21px; }
 </style>
 </head>
 <body>
-<div id="scene">
-  <div class="laptop">
-    <span class="tag tag-mc" style="position:absolute">MakeCode Arcade · star catcher</span>
-    <div class="lid"><div class="screen"><img src="hero-src/makecode-star-catcher.png" alt=""></div></div>
-    <div class="base"></div>
-  </div>
 
-  <div class="wrap" style="left: 10px; top: 660px;">
-    <span class="tag tag-scratch">Scratch · Secret Vault</span>
-    <div class="card scratch" style="position:relative"><img src="hero-src/scratch-secret-vault.png" alt=""></div>
+<!-- 1. MakeCode Arcade star catcher -->
+<div class="slide" id="slide-1">
+  <div class="console" style="left: 20px; top: 70px; width: 470px;">
+    <img src="hero-src/makecode-star-console.png" alt="">
   </div>
+  <div class="win light" style="right: 0; top: 140px; width: 490px; padding-bottom: 18px;">
+    <div class="bar"><i></i><i></i><i></i></div>
+    <img src="hero-src/makecode-game-update.png" alt="" style="width: 430px; margin: 18px 0 0 18px;">
+    <img src="hero-src/makecode-overlap.png" alt="" style="width: 452px; margin: 16px 0 0 18px;">
+  </div>
+</div>
 
-  <div class="wrap" style="left: 660px; top: 470px;">
-    <span class="tag tag-py">Python · number guessing game</span>
-    <div class="card py" style="position:relative"><span class="kw">import</span> random
+<!-- 2. Scratch Secret Vault -->
+<div class="slide" id="slide-2">
+  <div class="win" style="left: 0; top: 0; width: 620px;">
+    <div class="bar"><i></i><i></i><i></i></div>
+    <img src="hero-src/scratch-vault-stage.png" alt="" style="aspect-ratio: 1888 / 1120; object-fit: cover; object-position: top;">
+  </div>
+  <div class="keys" style="left: 650px; top: 150px;">Holding <span class="key">A</span> + <span class="key">S</span></div>
+  <div class="win light" style="right: 0; bottom: 0; width: 720px;">
+    <div class="bar"><i></i><i></i><i></i></div>
+    <img src="hero-src/scratch-secret-vault.png" alt="" style="padding: 10px 6px 6px; box-sizing: border-box;">
+  </div>
+</div>
+
+<!-- 3. Python number guessing game -->
+<div class="slide" id="slide-3">
+  <div class="win" style="left: 0; top: 0; width: 620px;">
+    <div class="bar"><i></i><i></i><i></i></div>
+    <div class="py"><span class="kw">import</span> random
 
 random_number <span class="kw">=</span> random.<span class="fn">randint</span>(<span class="num">1</span>, <span class="num">100</span>)
 
@@ -72,13 +87,18 @@ random_number <span class="kw">=</span> random.<span class="fn">randint</span>(<
     <span class="kw">elif</span> guess <span class="kw">&lt;</span> random_number:
         <span class="fn">print</span>(<span class="str">"more"</span>)
     <span class="kw">else</span>:
-        <span class="fn">print</span>(<span class="str">"less"</span>)<div class="out">guess <span class="in">50</span>
+        <span class="fn">print</span>(<span class="str">"less"</span>)</div>
+  </div>
+  <div class="win" style="right: 0; bottom: 0; width: 380px; background: #0f1420;">
+    <div class="bar"><i></i><i></i><i></i></div>
+    <div class="term">guess <span class="in">50</span>
 more
 guess <span class="in">60</span>
 less
 guess <span class="in">58</span>
-Congratulations!</div></div>
+Congratulations!</div>
   </div>
 </div>
+
 </body>
 </html>
