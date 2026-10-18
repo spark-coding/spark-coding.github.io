@@ -6,13 +6,11 @@ header.masthead {
     padding-top: 10rem;
     padding-bottom: calc(10rem - #{$navbar-height});
 
-    // replace the masthead.jpg image in the /assets/img directory to change the image
-    // if the image name change, make sure to update the url path below!
-
-    background: linear-gradient(to bottom,
-        #{fade-out($brown, 0.2)} 0%,
-        #{fade-out($brown, 0.2)} 100%),
-    url("../assets/img/bg-masthead.jpg");
+    // Brand gradient; the hero image is an <img> of real student projects
+    // (assets/img/hero-builds.webp, rendered from hero-image-generator.html).
+    background:
+        radial-gradient(circle at 85% 40%, rgba($primary, 0.28) 0%, rgba($primary, 0) 55%),
+        linear-gradient(135deg, darken($brown, 14%) 0%, $brown 100%);
 
     background-position: center;
     background-repeat: no-repeat;
@@ -21,6 +19,18 @@ header.masthead {
 
     h1 {
         font-size: 2.25rem;
+    }
+
+    .hero-art {
+        width: 100%;
+        max-width: 30rem;
+        height: auto;
+    }
+
+    .hero-caption {
+        margin-top: 0.75rem;
+        font-size: 0.9rem;
+        color: rgba($white, 0.75);
     }
 
     @include media-breakpoint-up(lg) {
@@ -34,13 +44,17 @@ header.masthead {
         }
 
         h1 {
-            font-size: 3rem;
+            font-size: 2.6rem;
+        }
+
+        .hero-art {
+            max-width: 100%;
         }
     }
 
     @include media-breakpoint-up(xl) {
         h1 {
-            font-size: 3.5rem;
+            font-size: 3rem;
         }
     }
 }
