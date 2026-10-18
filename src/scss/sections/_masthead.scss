@@ -29,6 +29,18 @@ header.masthead {
         margin: 0 auto;
     }
 
+    // Trust line under the CTAs: items wrap as whole units, never mid-phrase
+    .hero-trust {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.35rem 1.5rem;
+
+        @include media-breakpoint-up(lg) {
+            justify-content: flex-start;
+        }
+    }
+
     .hero-caption {
         margin-top: 0.75rem;
         font-size: 0.9rem;
