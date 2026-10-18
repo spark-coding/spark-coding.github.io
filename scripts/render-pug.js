@@ -14,7 +14,7 @@ function assetVersion() {
     sh.find(upath.join(srcPath, 'scss'), upath.join(srcPath, 'js'))
         .filter(f => /\.(scss|js)$/.test(f))
         .sort()
-        .forEach(f => hash.update(f).update(fs.readFileSync(f)));
+        .forEach(f => hash.update(upath.relative(srcPath, f)).update(fs.readFileSync(f)));
     return hash.digest('hex').slice(0, 10);
 }
 
