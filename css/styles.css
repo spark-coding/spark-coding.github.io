@@ -11057,3 +11057,204 @@ header.masthead h1, header.masthead .h1 {
   display: block;
   margin-bottom: 1rem;
 }
+
+.build-card,
+.lesson-step,
+.trial-step,
+.term-card,
+.fee-card,
+.review-card,
+.guide-note {
+  padding: 1.75rem;
+  border-radius: 0.75rem;
+  background-color: #fff;
+  box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.06);
+}
+
+.build-card .build-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.25rem;
+  height: 3.25rem;
+  margin-bottom: 1rem;
+  border-radius: 0.75rem;
+  background-color: rgba(244, 98, 58, 0.1);
+  color: #f4623a;
+  font-size: 1.6rem;
+}
+.build-card .build-platform {
+  display: inline-block;
+  background-color: rgba(244, 98, 58, 0.12);
+  color: #d6370c;
+  font-weight: 600;
+}
+
+.lesson-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  margin-bottom: 0.75rem;
+  border-radius: 50%;
+  background-color: #f4623a;
+  color: #fff;
+  font-family: "Merriweather Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-weight: 700;
+}
+
+.term-card {
+  border-top: 4px solid #f4623a;
+}
+.term-card .term-stage {
+  margin-bottom: 0.25rem;
+  color: #6c757d;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.term-card ul {
+  padding-left: 1.1rem;
+}
+
+.milestones {
+  padding: 2rem;
+  border-radius: 0.75rem;
+  background-color: rgba(244, 98, 58, 0.06);
+}
+.milestones .milestone-when {
+  margin-bottom: 0.5rem;
+  color: #f4623a;
+  font-family: "Merriweather Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-weight: 700;
+}
+
+.review-card {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+.review-card .review-stars {
+  color: #fbbc04;
+}
+.review-card blockquote {
+  flex-grow: 1;
+  font-style: italic;
+}
+
+.fee-card {
+  text-align: center;
+}
+.fee-card h3, .fee-card .h3 {
+  margin-top: 0.75rem;
+}
+
+#faq .accordion-button {
+  font-family: "Merriweather Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-weight: 700;
+}
+#faq .accordion-button:not(.collapsed) {
+  color: #ee3e0d;
+  background-color: rgba(244, 98, 58, 0.08);
+}
+#faq .accordion-button:focus {
+  box-shadow: 0 0 0 0.25rem rgba(244, 98, 58, 0.25);
+}
+
+.sticky-cta {
+  position: fixed;
+  left: 1rem;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 1030;
+  padding: 0.85rem 1rem;
+  border-radius: 2rem;
+  box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.25);
+  font-weight: 700;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.sticky-cta.is-hidden {
+  opacity: 0;
+  transform: translateY(150%);
+  pointer-events: none;
+}
+
+@media (max-width: 991.98px) {
+  footer {
+    padding-bottom: 6rem !important;
+  }
+}
+header.masthead.masthead-short {
+  height: auto;
+  min-height: 0;
+  padding-top: 10rem;
+  padding-bottom: 5rem;
+}
+
+.guide h2, .guide .h2 {
+  margin-top: 0;
+}
+.guide .divider.ms-0 {
+  margin-left: 0;
+}
+.guide .guide-glance {
+  padding: 1.75rem;
+  border-left: 4px solid #f4623a;
+  border-radius: 0.5rem;
+  background-color: rgba(244, 98, 58, 0.06);
+}
+.guide .guide-stage {
+  display: flex;
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+.guide .guide-stage .guide-stage-num {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background-color: #f4623a;
+  color: #fff;
+  font-family: "Merriweather Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+.guide .guide-door,
+.guide .guide-example {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #e9ecef;
+}
+.guide .guide-cta {
+  padding: 2.5rem 2rem;
+  border-radius: 0.75rem;
+  background-color: #f8f9fa;
+}
+
+.teacher-photo,
+.call-cta-avatar {
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.teacher-photo {
+  width: 160px;
+  height: 160px;
+  border: 4px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.2);
+}
+
+.call-cta-avatar {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 72px;
+  height: 72px;
+  border: 3px solid #f4623a;
+}
